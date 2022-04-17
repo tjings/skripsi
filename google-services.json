@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517686702225",
+    "project_id": "skripsian-30a54",
+    "storage_bucket": "skripsian-30a54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517686702225:android:90a24d99a90dd25d4b0f30",
+        "android_client_info": {
+          "package_name": "umn.ac.id.skripsijosh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517686702225-39njgin022mq6ooqp392u3g114fis7sh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBakde9pLurX2mEK1fG_hCF3ORYMWIe85Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517686702225-39njgin022mq6ooqp392u3g114fis7sh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

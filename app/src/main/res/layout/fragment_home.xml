@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/app_top_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlHome"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/_12sdp"
+        android:background="@color/white"
+        android:descendantFocusability="blocksDescendants"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rlHomeProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:background="@color/col_6">
+
+                    <ProgressBar
+                        android:id="@+id/progress_bar"
+                        style="@style/CircularDeterminateProgressBar"
+                        android:layout_width="400dp"
+                        android:layout_height="400dp"
+                        android:indeterminateOnly="false"
+                        android:progress="60"
+                        android:progressDrawable="@drawable/circle"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDayAndDate"
+                        tools:progress="60" />
+
+                    <TextView
+                        android:id="@+id/tvHomeProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="40%"
+                        android:textSize="@dimen/_20sdp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
+                        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
+                        app:layout_constraintStart_toStartOf="@+id/progress_bar"
+                        app:layout_constraintTop_toTopOf="@+id/progress_bar"/>
+
+                    <TextView
+                        android:id="@+id/tvDayAndDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Tuesday, 30th March 2022"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="@dimen/_8sdp"/>
+
+                    <TextView
+                        android:id="@+id/tvProgressML"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/drank_water"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/progress_bar" />
+
+                    <TextView
+                        android:id="@+id/tvAddProgress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/add_your_progress"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/fabAdd"
+                        app:layout_constraintEnd_toStartOf="@+id/fabAdd"
+                        app:layout_constraintTop_toTopOf="@+id/fabAdd" />
+
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:fabSize="mini"
+                        android:src="@drawable/ic_add"
+                        app:layout_constraintTop_toBottomOf="@+id/tvProgressML"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:contentDescription="@string/content_desc" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:baselineAligned="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_marginHorizontal="@dimen/_5sdp">
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:id="@+id/rlToChallenge"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/col_6">
+
+                        <ImageView
+                            android:id="@+id/ivToChallenge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:contentDescription="@string/content_desc"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivToChallenge"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="@string/challenge"
+                            android:textSize="@dimen/_8ssp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:id="@+id/rlToLeaderboard"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/col_6">
+
+                        <ImageView
+                            android:id="@+id/ivWhat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:contentDescription="@string/content_desc"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivWhat"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            tools:text="What"
+                            android:textSize="@dimen/_8ssp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:id="@+id/rltoShop"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/col_6">
+
+                        <ImageView
+                            android:id="@+id/ivShop"
+                            android:layout_centerHorizontal="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/content_desc"
+                            android:src="@drawable/ic_launcher_foreground" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/ivShop"
+                            android:layout_centerInParent="true"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:text="@string/navigation_shop"
+                            android:textSize="@dimen/_8ssp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

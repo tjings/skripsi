@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navi_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.skripsijosh.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_medalsFragment"
+            app:destination="@id/medalsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_shopFragment"
+            app:destination="@id/leaderboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/medalsFragment"
+        android:name="com.example.skripsijosh.ui.medals.MedalsFragment"
+        android:label="fragment_medals"
+        tools:layout="@layout/fragment_medals" >
+        <action
+            android:id="@+id/action_medalsFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_medalsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_medalsFragment_to_shopFragment"
+            app:destination="@id/leaderboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.example.skripsijosh.ui.leaderboard.ShopFragment"
+        android:label="fragment_shop"
+        tools:layout="@layout/fragment_leaderboard" >
+        <action
+            android:id="@+id/action_shopFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_shopFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_shopFragment_to_medalsFragment"
+            app:destination="@id/medalsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.skripsijosh.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_medalsFragment"
+            app:destination="@id/medalsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_shopFragment"
+            app:destination="@id/leaderboardFragment" />
+    </fragment>
+</navigation>

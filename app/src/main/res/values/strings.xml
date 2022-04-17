@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">skripsian</string>
+
+    /* GENERAL */
+    <string name="content_desc">Content Description</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_in">Log in</string>
+    <string name="sign_up">Register</string>
+    <string name="close">Close</string>
+
+    /* BOTTOM NAVIGATION */
+    <string name="navigation_home">Home</string>
+    <string name="navigation_medals">Medals</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="navigation_shop">Shop</string>
+    <string name="navigation_profile">Profile</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="havent_acc">Havent an account? Register here!</string>
+    <string name="full_name">Full Name</string>
+    <string name="enter_name">Enter your name here</string>
+    <string name="bday">Birthday</string>
+    <string name="select_birthday">Select your birthday</string>
+    <string name="email">Email</string>
+    <string name="enter_your_email_address">Enter your email address</string>
+    <string name="make_a_password">Make a password</string>
+    <string name="confirm_your_password">Confirm your password</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
+    <string name="log_out">Log out</string>
+    <string name="about">About</string>
+    <string name="notifications">Notifications</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="complete_your_data_first">Complete your data first</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="input_your_height">Input your height</string>
+    <string name="input_your_weight">Input your weight</string>
+    <string name="save">Save</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
+    <string name="submit">Submit</string>
+    <string name="how_much_did_you_just_drink">How much did you just drink? (mL)</string>
+    <string name="drank_water">You Drank %s mL Today</string>
+    <string name="congratz">Congratulations!\nTarget Achieved</string>
+    <string name="add_your_progress">Add your progress</string>
+    <string name="title_activity_leaderboard">LeaderboardActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="welcome_to_drinkuy_please_login_to_continue">Welcome to DrinKuy, please login to continue!</string>
+    <string name="haven_t_an_account_yet_register_here">Haven\'t an account yet? Register here</string>
+    <string name="welcome_to_drinkuy">Welcome to DrinKuy!</string>
+    <string name="challenge">Challenge</string>
+
+</resources>

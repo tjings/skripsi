@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/bg_def"
+    app:cardCornerRadius="@dimen/_8sdp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/_33sdp"
+        android:paddingTop="@dimen/_20sdp"
+        android:paddingRight="@dimen/_33sdp"
+        android:paddingBottom="@dimen/_20sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvDialogMssg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center_horizontal"
+            android:text="@string/how_much_did_you_just_drink"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp" />
+
+        <EditText
+            android:id="@+id/etWaterAmt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:autofillHints="Water in Millilitres"
+            android:background="@color/white"
+            android:inputType="number"
+            tools:ignore="LabelFor" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@color/white"
+            android:text="@string/submit"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12ssp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnClose"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_28sdp"
+            android:background="@color/white"
+            android:text="@string/close"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_11ssp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

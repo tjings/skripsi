@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/appBar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/transparent"
+        app:navigationIcon="?attr/homeAsUpIndicator">
+
+        <TextView
+            android:id="@+id/tvToolbarTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="?android:attr/actionBarSize"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11ssp"
+            tools:text="@string/app_name" />
+
+    </Toolbar>
+
+</com.google.android.material.appbar.AppBarLayout>
