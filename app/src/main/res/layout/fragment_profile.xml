@@ -5,24 +5,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment"
-    android:background="@color/col_6_transparent">
-
-    <include
-        android:id="@+id/include2"
-        layout="@layout/app_top_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@color/col_4">
 
     <ScrollView
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_20sdp">
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_sett"
+                app:fabSize="mini"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/notif_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:fabSize="mini"
+                app:layout_constraintTop_toBottomOf="@+id/add_fab"
+                app:layout_constraintEnd_toEndOf="@+id/add_fab"
+                app:layout_constraintStart_toStartOf="@+id/add_fab"
+                app:srcCompat="@drawable/ic_notif" />
+
+            <TextView
+                android:id="@+id/notif_fab_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notifications"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/notif_fab"
+                app:layout_constraintEnd_toStartOf="@+id/notif_fab"
+                app:layout_constraintTop_toTopOf="@+id/notif_fab" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/logout_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="mini"
+                app:layout_constraintTop_toBottomOf="@+id/notif_fab"
+                app:layout_constraintEnd_toEndOf="@+id/notif_fab"
+                app:layout_constraintStart_toStartOf="@+id/notif_fab"
+                app:srcCompat="@drawable/ic_logout" />
+
+            <TextView
+                android:id="@+id/logout_fab_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/log_out"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/logout_fab"
+                app:layout_constraintEnd_toStartOf="@+id/logout_fab"
+                app:layout_constraintTop_toTopOf="@+id/logout_fab" />
 
             <ImageView
                 android:contentDescription="@string/content_desc"
@@ -55,53 +99,171 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvName" />
 
             <TextView
-                android:id="@+id/tvSettings1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_44sdp"
-                android:layout_marginTop="20dp"
-                android:padding="@dimen/_5sdp"
-                android:background="@color/col_6_liltransparent"
-                android:text="@string/edit_profile"
-                android:textSize="@dimen/_15sdp"
-                app:layout_constraintTop_toBottomOf="@id/tvEmail"
-                android:gravity="center_vertical"/>
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/full_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
+
+
+            <EditText
+                android:autofillHints="Name"
+                android:id="@+id/etName"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:background="@color/white"
+                android:hint="@string/enter_name"
+                android:inputType="text"
+                android:letterSpacing="0.08"
+                android:lineSpacingExtra="2sp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1" />
 
             <TextView
-                    android:id="@+id/tvSettings2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_44sdp"
-                    android:padding="@dimen/_5sdp"
-                    android:background="@color/col_6"
-                    android:text="@string/notifications"
-                    android:textSize="@dimen/_15sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSettings1"
-                android:gravity="center_vertical"/>
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:text="@string/bday"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etName" />
 
-                <TextView
-                    android:id="@+id/tvSettings3"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_44sdp"
-                    android:padding="@dimen/_5sdp"
-                    android:background="@color/col_6_liltransparent"
-                    android:text="@string/about"
-                    android:textSize="@dimen/_15sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvSettings2"
-                    android:gravity="center_vertical"/>
-
-            <TextView
-                android:id="@+id/tvLogout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_44sdp"
-                android:padding="@dimen/_5sdp"
-                android:background="@color/col_6"
-                android:text="@string/log_out"
-                android:textSize="@dimen/_15sdp"
+            <EditText
+                android:autofillHints="Birthday"
+                android:id="@+id/etBday"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:background="@color/white"
+                android:hint="@string/select_birthday"
+                android:inputType="date"
+                android:letterSpacing="0.08"
+                android:lineSpacingExtra="2sp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvSettings3"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:text="@string/height"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etBday" />
+
+            <EditText
+                android:autofillHints="Height"
+                android:id="@+id/etHeight"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:background="@color/white"
+                android:hint="@string/input_your_height"
+                android:inputType="number"
+                android:letterSpacing="0.08"
+                android:lineSpacingExtra="2sp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/etHeight"
+                app:layout_constraintEnd_toEndOf="@id/etHeight"
+                app:layout_constraintBottom_toBottomOf="@id/etHeight"
+                android:text="@string/cm"
+                android:layout_marginEnd="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:text="@string/weight"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etHeight" />
+
+            <EditText
+                android:autofillHints="Weight"
+                android:id="@+id/etWeight"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:background="@color/white"
+                android:hint="@string/input_your_weight"
+                android:inputType="number"
+                android:letterSpacing="0.08"
+                android:lineSpacingExtra="2sp"
+                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:paddingEnd="10dp"
+                android:paddingRight="10dp"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/etWeight"
+                app:layout_constraintEnd_toEndOf="@id/etWeight"
+                app:layout_constraintBottom_toBottomOf="@id/etWeight"
+                android:text="@string/kg"
+                android:layout_marginEnd="@dimen/_10sdp"
+                />
+
+            <TextView
+                android:id="@+id/tvSave"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_44sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:background="@color/col_6"
+                android:text="@string/save"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etWeight"
                 android:gravity="center_vertical"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

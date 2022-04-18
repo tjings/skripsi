@@ -1,8 +1,10 @@
 package com.example.skripsijosh.ui.register.biodata
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import com.example.skripsijosh.base.BaseActivity
 import com.example.skripsijosh.databinding.ActivityBiodataBinding
 import com.example.skripsijosh.ui.main.MainActivity
@@ -31,9 +33,7 @@ class BiodataActivity : BaseActivity(), BiodataView {
             finish()
         }
 
-        binding.etBday.setOnClickListener {
-            datePicker()
-        }
+        binding.etBday.transformIntoDatePicker(this, "MM/dd/yyyy", Date())
 
         binding.btnSave.setOnClickListener {
             saveUserData()
@@ -82,31 +82,30 @@ class BiodataActivity : BaseActivity(), BiodataView {
         )
     }
 
-    private fun datePicker() {
-        Util.hideKeyboard(this, binding.etBday)
-        if(datePickerDialog == null) {
-            val tempDate = if(Util.isNotNull(binding.etBday.toString())) {
-                val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                simpleDateFormat.parse(binding.etBday.toString())
-            } else {
-                val date = Calendar.getInstance()
-                date.set(1990, 0, 1)
-                date.time
-            }
-            val date = Calendar.getInstance()
-            date.time = tempDate!!
-            val bYear = date.get(Calendar.YEAR)
-            val bMonth = date.get(Calendar.MONTH)
-            val bDate = date.get(Calendar.DAY_OF_MONTH)
+    fun EditText.transformIntoDatePicker(context: Context, format: String, maxDate: Date? = null) {
+        isFocusableInTouchMode = false
+        isClickable = true
+        isFocusable = false
 
-            datePickerDialog = DatePickerDialog(this, { datePicker, i, i2, i3 ->
-                val datePicked = "$i3-${i2+1}-$i"
-                val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                val userBday = simpleDateFormat.format(datePicked)
-                binding.etBday.setText(userBday)
-            }, bYear, bMonth, bDate)
-            datePickerDialog!!.datePicker.maxDate = System.currentTimeMillis()
+        val myCalendar = Calendar.getInstance()
+        val datePickerOnDataSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                myCalendar.set(Calendar.YEAR, year)
+                myCalendar.set(Calendar.MONTH, monthOfYear)
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                val sdf = SimpleDateFormat(format, Locale.UK)
+                setText(sdf.format(myCalendar.time))
+            }
+
+        setOnClickListener {
+            DatePickerDialog(
+                context, datePickerOnDataSetListener, myCalendar
+                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)
+            ).run {
+                maxDate?.time?.also { datePicker.maxDate = it }
+                show()
+            }
         }
-        datePickerDialog!!.show()
     }
 }
