@@ -138,32 +138,32 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_weight="1"
-                        android:id="@+id/rlToLeaderboard"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:background="@color/col_6">
+<!--                    <RelativeLayout-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:id="@+id/rlToLeaderboard"-->
+<!--                        android:layout_width="@dimen/_70sdp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        android:background="@color/col_6">-->
 
-                        <ImageView
-                            android:id="@+id/ivWhat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:contentDescription="@string/content_desc"
-                            android:src="@drawable/ic_launcher_foreground" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/ivWhat"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:contentDescription="@string/content_desc"-->
+<!--                            android:src="@drawable/ic_launcher_foreground" />-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ivWhat"
-                            android:layout_centerInParent="true"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            tools:text="What"
-                            android:textSize="@dimen/_8ssp" />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_below="@+id/ivWhat"-->
+<!--                            android:layout_centerInParent="true"-->
+<!--                            android:layout_marginBottom="@dimen/_5sdp"-->
+<!--                            tools:text="What"-->
+<!--                            android:textSize="@dimen/_8ssp" />-->
 
-                    </RelativeLayout>
+<!--                    </RelativeLayout>-->
 
                     <RelativeLayout
                         android:layout_weight="1"

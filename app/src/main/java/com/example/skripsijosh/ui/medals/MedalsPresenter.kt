@@ -21,7 +21,7 @@ class MedalsPresenter (view: MedalsView) : BasePresenter <MedalsView>() {
                 if (medalId != null) {
                     getUserMedalsDetails(medalId)
                 } else {
-                    val userCompMedal = UserCompMedal()
+                    val userCompMedal = UserCompMedal(medalId = arrayListOf(1))
                     db.collection("userCompletedMedal")
                         .document(auth.uid!!)
                         .set(userCompMedal)

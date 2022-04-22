@@ -3,6 +3,7 @@ package com.example.skripsijosh.ui.register.biodata
 import android.util.Log
 import com.example.skripsijosh.base.BasePresenter
 import com.example.skripsijosh.pojo.UserData
+import com.example.skripsijosh.pojo.UserStreak
 import com.example.skripsijosh.pojo.UserWater
 
 class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
@@ -25,22 +26,33 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
             displayPic = displayPic,
             isBiodataDone = true
         )
-        val water = UserWater(0)
         db.collection("userData")
             .document(auth.uid!!)
             .set(user)
             .addOnSuccessListener {
-                Log.d("sukses", "Done")
                 view?.stopLoading()
                 view?.onSaveBiodataSucces()
             }
             .addOnFailureListener {
                 Log.w("eror", "Error", it)
             }
+        val water = UserWater()
         db.collection("userWater")
             .document(auth.uid!!)
             .set(water)
             .addOnSuccessListener {}
             .addOnFailureListener {}
+        val streak = UserStreak()
+        db.collection("userStreak")
+            .document(auth.uid!!)
+            .set(streak)
+            .addOnSuccessListener {
+                view?.stopLoading()
+            }
+            .addOnFailureListener {
+                view?.stopLoading()
+                view?.showError(it.message.toString())
+            }
+
     }
 }

@@ -3,30 +3,52 @@ package com.example.skripsijosh.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.skripsijosh.R
 import com.example.skripsijosh.base.BaseFragment
 import com.example.skripsijosh.databinding.FragmentHomeBinding
+import com.example.skripsijosh.pojo.UserDailyWater
+import com.example.skripsijosh.pojo.UserStreak
 import com.example.skripsijosh.ui.challenge.ChallengeActivity
 import com.example.skripsijosh.ui.shop.ShopActivity
 import com.example.skripsijosh.utils.DialogUtil
+import java.time.LocalDate
+import java.time.Period
+import java.time.format.DateTimeFormatter
 import java.util.*
-
 
 class HomeFragment : BaseFragment(), HomeView {
     private lateinit var presenter: HomePresenter
     private lateinit var binding: FragmentHomeBinding
-    var mWaterProgress = 0
+    private var date: CharSequence = ""
+    private var time: String = ""
+    private var mLatestStreak: CharSequence = ""
+    private var mWaterProgress = 0
+    private var mStreak = 0
+    private var mTotalStreak = 0
+    private var progress: Int = 0
+    private var isStreakBroken = false
+    private var isCompleteDaily = false
 
+    private val timer = Timer()
+    private val task: TimerTask = object : TimerTask() {
+        override fun run() {
+            date = DateFormat.format("ddMMMyy", Date())
+            time = DateFormat.format("HHmmss", Date()) as String
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         presenter = HomePresenter(this)
-        presenter.getWaterData()
+        date = DateFormat.format("ddMMMyy", Date())
+        time = DateFormat.format("HHmmss", Date()) as String
+        presenter.getWaterData(date.toString())
         return binding.root
     }
 
@@ -35,9 +57,9 @@ class HomeFragment : BaseFragment(), HomeView {
             view,
             savedInstanceState
         )
-
+        timer.schedule(task, 0L, 1000 * 30)
         binding.srlHome.setOnRefreshListener {
-            presenter.getWaterData()
+            presenter.getWaterData(today = date.toString())
         }
         binding.rlToChallenge.setOnClickListener {
             startActivity(Intent(context, ChallengeActivity::class.java))
@@ -45,13 +67,12 @@ class HomeFragment : BaseFragment(), HomeView {
         binding.rltoShop.setOnClickListener {
             startActivity(Intent(context, ShopActivity::class.java))
         }
-        binding.tvDayAndDate.text = DateFormat.format("EEEE, dd MMM yyyy" , Date()) as String
+        binding.tvDayAndDate.text = DateFormat.format("EEEE, dd MMMM yyyy" , Date()) as String
         binding.fabAdd.setOnClickListener {
             DialogUtil(requireActivity()).showDialog(
                 callback = object : DialogUtil.DialogActionCallback{
                     override fun onPositive(waterAmt: Int?) {
-                        val sendWater = mWaterProgress + waterAmt!!
-                        presenter.addWater(sendWater)
+                        presenter.addWater(today = date.toString(), time = time, waterAmt = waterAmt!!)
                     }
                     override fun onNegative() {
                     }
@@ -60,16 +81,40 @@ class HomeFragment : BaseFragment(), HomeView {
         }
     }
 
-    override fun onLoadDataSuccess(result: Int) {
-        mWaterProgress = result
+    override fun onLoadDataSuccess(results: MutableList<UserDailyWater>, streak: UserStreak) {
+        mWaterProgress = 0
+        results.forEach {
+            mWaterProgress += it.dailyWater
+        }
+        mStreak = streak.streak
+        mTotalStreak = streak.highestStreak!!
+        mLatestStreak = streak.latestDate
+
+        val from = LocalDate.parse(mLatestStreak, DateTimeFormatter.ofPattern("ddMMMyy"))
+        val today = LocalDate.now()
+        val period = Period.between(from, today)
+        if(period.days > 1 || period.days < 0) {
+            isStreakBroken = true
+        }
+
         binding.tvProgressML.text = String.format(getString(R.string.drank_water), mWaterProgress)
-        val progress = (mWaterProgress * 100) / 2000
-        binding.progressBar.progress = if(progress < 100) {
-            progress
-        } else 100
-        binding.tvHomeProgress.text = if(progress < 100) {
-            "$progress%"
-        } else "100%"
+        progress = (mWaterProgress * 100) / 2000
+        when {
+            progress <= 0 -> {
+                binding.progressBar.progress = 0
+                binding.tvHomeProgress.text = String.format(getString(R.string.progress), 0)
+            }
+            progress < 100 ->{
+                binding.progressBar.progress = progress
+                binding.tvHomeProgress.text = String.format(getString(R.string.progress), progress)
+            }
+            else -> {
+                isCompleteDaily = true
+                binding.progressBar.progress = 100
+                binding.tvHomeProgress.text = String.format(getString(R.string.progress), 100)
+                setStreak()
+            }
+        }
     }
 
     override fun startLoading() {
@@ -86,6 +131,53 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun showEmpty() {}
 
     override fun onAddWaterSuccess() {
-        presenter.getWaterData()
+        date = DateFormat.format("ddMMMyy", Date()) as String
+        presenter.getWaterData(today = date.toString())
+    }
+
+    private fun checkStreak() {
+
+    }
+
+    private fun setStreak() {
+        val userStreak = if(isStreakBroken) {
+            if(isCompleteDaily) {
+                if (mTotalStreak < mStreak) {
+                    UserStreak(
+                        streak = 1,
+                        highestStreak = mStreak,
+                        latestDate = date.toString()
+                    )
+                } else {
+                    UserStreak(
+                        streak = 1,
+                        highestStreak = mTotalStreak,
+                        latestDate = date.toString()
+                    )
+                }
+            }
+            else {
+                UserStreak(
+                    streak = 0,
+                    highestStreak = mTotalStreak,
+                    latestDate = mLatestStreak.toString()
+                )
+            }
+        } else {
+            if(mStreak < mTotalStreak) {
+                UserStreak(
+                    streak = mStreak + 1,
+                    highestStreak = mTotalStreak,
+                    latestDate = date.toString()
+                )
+            } else {
+                UserStreak(
+                    streak = mStreak + 1,
+                    highestStreak = mStreak + 1,
+                    latestDate = date.toString()
+                )
+            }
+        }
+        presenter.setStreak(userStreak)
     }
 }

@@ -1,5 +1,5 @@
 package com.example.skripsijosh.pojo
 
 class UserWater (
-    var progressDaily: Int = 0
+    var progressTotal: Int = 0
 )
