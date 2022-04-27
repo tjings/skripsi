@@ -1,6 +1,8 @@
 package com.example.skripsijosh.pojo
 
 class ChallengeDetails (
-    var desc: String? = null,
-    var name: String? = null
+    var desc: String = "",
+    var name: String = "",
+    var streakNeeded: Int = 0,
+    var waterNeeded: Int = 0
 )

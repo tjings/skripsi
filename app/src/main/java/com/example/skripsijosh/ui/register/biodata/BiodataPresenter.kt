@@ -42,7 +42,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
             .set(water)
             .addOnSuccessListener {}
             .addOnFailureListener {}
-        val streak = UserStreak()
+        val streak = UserStreak(userName = displayName)
         db.collection("userStreak")
             .document(auth.uid!!)
             .set(streak)

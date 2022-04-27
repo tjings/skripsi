@@ -41,11 +41,10 @@
                         android:layout_width="400dp"
                         android:layout_height="400dp"
                         android:indeterminateOnly="false"
-                        android:progress="60"
                         android:progressDrawable="@drawable/circle"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvDayAndDate"
-                        tools:progress="60" />
+                        tools:progress="100" />
 
                     <TextView
                         android:id="@+id/tvHomeProgress"

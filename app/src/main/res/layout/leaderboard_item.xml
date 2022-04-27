@@ -9,20 +9,21 @@
     android:layout_marginBottom="@dimen/_4sdp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cvMedals"
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_90sdp"
-        app:cardCornerRadius="@dimen/_6sdp"
+        android:id="@+id/cvLeaderboard"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
         app:cardBackgroundColor="@color/transparent"
+        app:cardCornerRadius="@dimen/_6sdp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="3.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/ivMedal"
+            android:id="@+id/ivLeaderboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -36,7 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cvLeaderboard"
         android:textSize="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
@@ -47,15 +48,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_5sdp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cvMedals"
-        app:layout_constraintTop_toTopOf="@id/cvMedals"
+        app:layout_constraintStart_toEndOf="@+id/cvLeaderboard"
+        app:layout_constraintTop_toTopOf="@id/cvLeaderboard"
         tools:text="Medal ABCDDCAd" />
+
+    <TextView
+        android:id="@+id/tvHighestStreak"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserName"
+        android:text="@string/highest_streak_leaderboard"
+        app:layout_constraintStart_toStartOf="@+id/tvUserName"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout
     >

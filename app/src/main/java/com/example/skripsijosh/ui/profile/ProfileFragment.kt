@@ -49,7 +49,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
         binding.logoutFab.setOnClickListener {
             auth.signOut()
-            activity!!.finish()
+            requireActivity().finish()
             startActivity(Intent(context, WelcomeActivity::class.java))
         }
 

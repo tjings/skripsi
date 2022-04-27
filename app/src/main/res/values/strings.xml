@@ -38,7 +38,7 @@
     <string name="kg">kg</string>
     <string name="submit">Submit</string>
     <string name="how_much_did_you_just_drink">How much did you just drink? (mL)</string>
-    <string name="drank_water">You drank %s mL Today</string>
+    <string name="drank_water">Hi, %s, You drank %s mL Today</string>
     <string name="add_your_progress">Add your progress</string>
     <string name="title_activity_leaderboard">LeaderboardActivity</string>
     <string name="welcome_to_drinkuy_please_login_to_continue">Welcome to DrinKuy, please login to continue!</string>
@@ -46,5 +46,7 @@
     <string name="welcome_to_drinkuy">Welcome to DrinKuy!</string>
     <string name="challenge">Challenge</string>
     <string name="progress">%s\%%</string>
+    <string name="highest_streak_leaderboard">Highest Streak : %s</string>
+    <string name="challenge_progress">%s/%s</string>
 
 </resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/col_3"
+    android:layout_marginBottom="@dimen/_4sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvChallenge"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        app:cardCornerRadius="@dimen/_6sdp"
+        app:cardBackgroundColor="@color/transparent"
+        app:cardElevation="0dp"
+        app:cardMaxElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintDimensionRatio="3.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:contentDescription="@string/content_desc"
+            android:id="@+id/ivChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_foreground"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvChallengeName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/_12sdp"
+        tools:text="Medal ABCDDCAd"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintStart_toEndOf="@+id/cvChallenge"
+        app:layout_constraintTop_toTopOf="@id/cvChallenge" />
+
+    <TextView
+        android:id="@+id/tvChallengeDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="4"
+        android:ellipsize="end"
+        tools:text="Youve unlodkedunlodkedunlodkedunlodkedunlodkedunlodkedunlodked ansdas dadas dansss ssssxxxxxxxxxxxxxxxxxxsss sss sssss ssssdasdadasdansdasdadasdansdasdadasdansdasdadasdansdasdadasdansdas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvChallengeName"
+        app:layout_constraintTop_toBottomOf="@+id/tvChallengeName"
+        android:layout_marginEnd="@dimen/_5sdp"/>
+
+    <TextView
+        android:id="@+id/tvProgress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/progressBarChallenge"
+        app:layout_constraintEnd_toEndOf="@id/progressBarChallenge"
+        app:layout_constraintTop_toBottomOf="@+id/tvChallengeDesc"
+        tools:text="10/2000" />
+
+    <ProgressBar
+        android:id="@+id/progressBarChallenge"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:progress="16"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvChallenge" />
+
+    <TextView
+        android:id="@+id/tvCompleted"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="COMPLETED"
+        android:textSize="@dimen/_50sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout
+    >

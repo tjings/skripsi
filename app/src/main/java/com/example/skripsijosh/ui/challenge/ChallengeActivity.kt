@@ -6,12 +6,15 @@ import com.example.skripsijosh.R
 import com.example.skripsijosh.base.BaseActivity
 import com.example.skripsijosh.databinding.ActivityChallengeBinding
 import com.example.skripsijosh.pojo.ChallengeDetails
-import com.example.skripsijosh.ui.medals.MedalsAdapter
+import com.example.skripsijosh.pojo.UserStreak
+import com.example.skripsijosh.pojo.UserWater
 
 class ChallengeActivity : BaseActivity(), ChallengeView {
     private lateinit var presenter: ChallengePresenter
     private lateinit var binding : ActivityChallengeBinding
     private var challengeList: MutableList<ChallengeDetails> = arrayListOf()
+    private var userStreak = 0
+    private var userWater = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +22,7 @@ class ChallengeActivity : BaseActivity(), ChallengeView {
         binding = ActivityChallengeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.getChallengeList()
+        presenter.getMilestones()
         binding.include2.toolbar.setNavigationIcon(R.drawable.ic_back)
         binding.include2.toolbar.setNavigationOnClickListener {
             onBackPressed()
@@ -36,12 +40,12 @@ class ChallengeActivity : BaseActivity(), ChallengeView {
 
     override fun onGetChallengeSuccess(result: MutableList<ChallengeDetails>) {
         challengeList.addAll(result)
-        initAdapter()
     }
 
-    private fun initAdapter() {
-        binding.rvChallenge.adapter = ChallengeAdapter(challengeList)
-        binding.rvChallenge.layoutManager = LinearLayoutManager(this)
+    override fun onGetUserMilestonesSuccess(mStreak: UserStreak, mWater: UserWater) {
+        userStreak = mStreak.highestStreak!!
+        userWater = mWater.progressTotal
+        initAdapter()
     }
 
     override fun startLoading() {}
@@ -51,4 +55,9 @@ class ChallengeActivity : BaseActivity(), ChallengeView {
     override fun showError(message: String) {}
 
     override fun showEmpty() {}
+
+    private fun initAdapter() {
+        binding.rvChallenge.adapter = ChallengeAdapter(challengeList, this, userStreak, userWater)
+        binding.rvChallenge.layoutManager = LinearLayoutManager(this)
+    }
 }

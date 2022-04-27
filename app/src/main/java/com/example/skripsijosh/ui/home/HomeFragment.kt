@@ -3,7 +3,6 @@ package com.example.skripsijosh.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import com.example.skripsijosh.R
 import com.example.skripsijosh.base.BaseFragment
 import com.example.skripsijosh.databinding.FragmentHomeBinding
 import com.example.skripsijosh.pojo.UserDailyWater
+import com.example.skripsijosh.pojo.UserData
 import com.example.skripsijosh.pojo.UserStreak
 import com.example.skripsijosh.ui.challenge.ChallengeActivity
 import com.example.skripsijosh.ui.shop.ShopActivity
@@ -23,6 +23,7 @@ import java.util.*
 class HomeFragment : BaseFragment(), HomeView {
     private lateinit var presenter: HomePresenter
     private lateinit var binding: FragmentHomeBinding
+    private  var userName = ""
     private var date: CharSequence = ""
     private var time: String = ""
     private var mLatestStreak: CharSequence = ""
@@ -32,6 +33,7 @@ class HomeFragment : BaseFragment(), HomeView {
     private var progress: Int = 0
     private var isStreakBroken = false
     private var isCompleteDaily = false
+    private var isTodayStreaked = false
 
     private val timer = Timer()
     private val task: TimerTask = object : TimerTask() {
@@ -96,8 +98,10 @@ class HomeFragment : BaseFragment(), HomeView {
         if(period.days > 1 || period.days < 0) {
             isStreakBroken = true
         }
-
-        binding.tvProgressML.text = String.format(getString(R.string.drank_water), mWaterProgress)
+        if (period.days == 0) {
+            isTodayStreaked = true
+        }
+        presenter.loadUserData()
         progress = (mWaterProgress * 100) / 2000
         when {
             progress <= 0 -> {
@@ -115,6 +119,11 @@ class HomeFragment : BaseFragment(), HomeView {
                 setStreak()
             }
         }
+    }
+
+    override fun onSuccessLoadProfile(userData: UserData) {
+        userName = userData.displayName.toString()
+        binding.tvProgressML.text = String.format(getString(R.string.drank_water), userName, mWaterProgress)
     }
 
     override fun startLoading() {
@@ -135,49 +144,52 @@ class HomeFragment : BaseFragment(), HomeView {
         presenter.getWaterData(today = date.toString())
     }
 
-    private fun checkStreak() {
-
-    }
-
     private fun setStreak() {
-        val userStreak = if(isStreakBroken) {
-            if(isCompleteDaily) {
-                if (mTotalStreak < mStreak) {
+        if (!isTodayStreaked) {
+            val userStreak = if (isStreakBroken) {
+                if (isCompleteDaily) {
+                    if (mTotalStreak < mStreak) {
+                        UserStreak(
+                            userName = userName,
+                            streak = 1,
+                            highestStreak = mStreak,
+                            latestDate = date.toString()
+                        )
+                    } else {
+                        UserStreak(
+                            userName = userName,
+                            streak = 1,
+                            highestStreak = mTotalStreak,
+                            latestDate = date.toString()
+                        )
+                    }
+                } else {
                     UserStreak(
-                        streak = 1,
-                        highestStreak = mStreak,
+                        userName = userName,
+                        streak = 0,
+                        highestStreak = mTotalStreak,
+                        latestDate = mLatestStreak.toString()
+                    )
+                }
+            } else {
+                if (mStreak < mTotalStreak) {
+                    UserStreak(
+                        userName = userName,
+                        streak = mStreak + 1,
+                        highestStreak = mTotalStreak,
                         latestDate = date.toString()
                     )
                 } else {
                     UserStreak(
-                        streak = 1,
-                        highestStreak = mTotalStreak,
+                        userName = userName,
+                        streak = mStreak + 1,
+                        highestStreak = mStreak + 1,
                         latestDate = date.toString()
                     )
                 }
             }
-            else {
-                UserStreak(
-                    streak = 0,
-                    highestStreak = mTotalStreak,
-                    latestDate = mLatestStreak.toString()
-                )
-            }
-        } else {
-            if(mStreak < mTotalStreak) {
-                UserStreak(
-                    streak = mStreak + 1,
-                    highestStreak = mTotalStreak,
-                    latestDate = date.toString()
-                )
-            } else {
-                UserStreak(
-                    streak = mStreak + 1,
-                    highestStreak = mStreak + 1,
-                    latestDate = date.toString()
-                )
-            }
+            presenter.setStreak(userStreak)
+            isTodayStreaked = true
         }
-        presenter.setStreak(userStreak)
     }
 }

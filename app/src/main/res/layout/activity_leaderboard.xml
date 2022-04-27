@@ -37,7 +37,7 @@
                 android:paddingBottom="@dimen/_5sdp"
                 tools:itemCount="7"
                 tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/user_unlocked_medals"
+                tools:listitem="@layout/leaderboard_item"
                 tools:orientation="vertical" />
 
         </RelativeLayout>
