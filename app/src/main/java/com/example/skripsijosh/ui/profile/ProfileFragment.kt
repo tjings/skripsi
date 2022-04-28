@@ -18,7 +18,8 @@ import com.example.skripsijosh.utils.Util
 class ProfileFragment : BaseFragment(), ProfileView {
     private lateinit var binding : FragmentProfileBinding
     private lateinit var presenter: ProfilePresenter
-    private var isFabVisible : Boolean = false
+    private var isFabVisible: Boolean = false
+    private var mUserData: UserData = UserData()
     private var name = ""
     private var height = ""
     private var weight = ""
@@ -109,28 +110,43 @@ class ProfileFragment : BaseFragment(), ProfileView {
         }
 
         binding.btnSave.setOnClickListener {
-            name = binding.etName.text.toString()
-            height = binding.etHeight.text.toString()
-            weight = binding.etHeight.text.toString()
-            if(!Util.isNotNull(name)) {
-                binding.tvErrorName.visibility = View.VISIBLE
-            }
-            else if(!Util.isNotNull(height)) {
-                binding.tvErrorHeight.visibility = View.VISIBLE
-            }
-            else if(!Util.isNotNull(weight)) {
-                binding.tvErrorWeight.visibility = View.VISIBLE
-            }
-            else {
-                presenter.saveUserData()
-            }
+            saveUserChanges()
         }
 
         presenter.loadUserData()
         return binding.root
     }
 
+    private fun saveUserChanges() {
+        name = binding.etName.text.toString()
+        height = binding.etHeight.text.toString()
+        weight = binding.etWeight.text.toString()
+
+        if(!Util.isNotNull(name)) {
+            binding.tvErrorName.visibility = View.VISIBLE
+        }
+        if(!Util.isNotNull(height)) {
+            binding.tvErrorHeight.visibility = View.VISIBLE
+        }
+        if(!Util.isNotNull(weight)) {
+            binding.tvErrorWeight.visibility = View.VISIBLE
+        }
+        else {
+            val newUserData = UserData(
+                displayName = name,
+                gender = mUserData.gender,
+                bday = mUserData.bday,
+                height = height,
+                weight = weight,
+                displayPic = mUserData.displayPic,
+                isBiodataDone = mUserData.isBiodataDone
+            )
+            presenter.saveUserData(newUserData)
+        }
+    }
+
     override fun onSuccessLoadProfile(userData: UserData) {
+        mUserData = userData
         binding.tvName.text = userData.displayName
         binding.tvEmail.text = auth.currentUser?.email
         binding.etName.setText(userData.displayName)

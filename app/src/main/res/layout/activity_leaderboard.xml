@@ -7,13 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.shop.ShopActivity">
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/app_top_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlLeaderboard"
         android:layout_width="match_parent"

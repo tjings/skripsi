@@ -53,6 +53,8 @@
     <string name="error_name">Invalid Name (name must be more than 4 character and less than 30 character)</string>
     <string name="error_weight">Invalid Weight (input your weight in kilograms)</string>
     <string name="error_height">Invalid Height (input your weight in centimeters)</string>
+    <string name="error_gender">Select your gender</string>
+    <string name="error_bday">Select your Birthday</string>
     <string-array name="Gender">
         <item>Male</item>
         <item>Female</item>

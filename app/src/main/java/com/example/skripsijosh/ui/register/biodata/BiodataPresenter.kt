@@ -13,6 +13,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
     }
 
     fun addUserData(displayName: String,
+                    gender: String,
                     bday: String,
                     weight: String,
                     height: String,
@@ -20,6 +21,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
         view?.startLoading()
         val user = UserData(
             displayName = displayName,
+            gender = gender,
             bday = bday,
             weight = weight,
             height = height,

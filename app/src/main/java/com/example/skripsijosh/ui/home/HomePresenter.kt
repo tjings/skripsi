@@ -71,13 +71,6 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
             .addOnFailureListener {
                 view?.stopLoading()
                 view?.showError(it.message.toString())
-//                //init empty data first
-//                val waterDailyDetNew = UserDailyWater(dailyWater = 0)
-//                db.collection("userDailyWater")
-//                    .document(today)
-//                    .collection(auth.uid!!)
-//                    .document("000000")
-//                    .set(waterDailyDetNew)
             }
     }
 

@@ -26,4 +26,18 @@ class ProfilePresenter (view: ProfileView) : BasePresenter<ProfileView>() {
                 view?.showError("err")
             }
     }
+
+    fun saveUserData(newUserData: UserData) {
+        view?.startLoading()
+        db.collection("userData")
+            .document(auth.uid!!)
+            .set(newUserData)
+            .addOnSuccessListener {
+                view?.stopLoading()
+                loadUserData()
+            }
+            .addOnFailureListener {
+                view?.showError(it.toString())
+            }
+    }
 }

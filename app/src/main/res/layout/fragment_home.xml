@@ -35,6 +35,15 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@color/col_6">
 
+                    <ImageButton
+                        android:id="@+id/btnTooltip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_info"
+                        android:onClick="showPopUp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ProgressBar
                         android:id="@+id/progress_bar"
                         style="@style/CircularDeterminateProgressBar"
