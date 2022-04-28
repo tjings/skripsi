@@ -48,5 +48,9 @@
     <string name="progress">%s\%%</string>
     <string name="highest_streak_leaderboard">Highest Streak : %s</string>
     <string name="challenge_progress">%s/%s</string>
-
+    <string name="gender">Gender</string>
+    <string-array name="Gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

@@ -47,9 +47,21 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
                     .document(auth.uid!!)
                     .get()
                     .addOnSuccessListener {
-                        view?.stopLoading()
-                        val streak = it.toObject(UserStreak::class.java)
-                        view?.onLoadDataSuccess(results, streak!!)
+                        if(it.data != null) {
+                            view?.stopLoading()
+                            val streak = it.toObject(UserStreak::class.java)
+                            view?.onLoadDataSuccess(results, streak!!)
+                        } else {
+                            val initStreak = UserStreak()
+                            db.collection("userStreak")
+                                .document(auth.uid!!)
+                                .set(initStreak)
+                                .addOnSuccessListener {
+                                }
+                                .addOnFailureListener {
+                                    view?.showError(it.message.toString())
+                                }
+                        }
                     }
                     .addOnFailureListener {
                         view?.stopLoading()
@@ -57,13 +69,15 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
                     }
             }
             .addOnFailureListener {
-                //init empty data first
-                val waterDailyDetNew = UserDailyWater(dailyWater = 0)
-                db.collection("userDailyWater")
-                    .document(today)
-                    .collection(auth.uid!!)
-                    .document("000000")
-                    .set(waterDailyDetNew)
+                view?.stopLoading()
+                view?.showError(it.message.toString())
+//                //init empty data first
+//                val waterDailyDetNew = UserDailyWater(dailyWater = 0)
+//                db.collection("userDailyWater")
+//                    .document(today)
+//                    .collection(auth.uid!!)
+//                    .document("000000")
+//                    .set(waterDailyDetNew)
             }
     }
 

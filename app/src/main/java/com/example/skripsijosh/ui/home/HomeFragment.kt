@@ -15,6 +15,7 @@ import com.example.skripsijosh.pojo.UserStreak
 import com.example.skripsijosh.ui.challenge.ChallengeActivity
 import com.example.skripsijosh.ui.shop.ShopActivity
 import com.example.skripsijosh.utils.DialogUtil
+import com.example.skripsijosh.utils.Util
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -92,14 +93,16 @@ class HomeFragment : BaseFragment(), HomeView {
         mTotalStreak = streak.highestStreak!!
         mLatestStreak = streak.latestDate
 
-        val from = LocalDate.parse(mLatestStreak, DateTimeFormatter.ofPattern("ddMMMyy"))
-        val today = LocalDate.now()
-        val period = Period.between(from, today)
-        if(period.days > 1 || period.days < 0) {
-            isStreakBroken = true
-        }
-        if (period.days == 0) {
-            isTodayStreaked = true
+        if(Util.isNotNull(mLatestStreak)) {
+            val from = LocalDate.parse(mLatestStreak, DateTimeFormatter.ofPattern("ddMMMyy"))
+            val today = LocalDate.now()
+            val period = Period.between(from, today)
+            if (period.days > 1 || period.days < 0) {
+                isStreakBroken = true
+            }
+            if (period.days == 0) {
+                isTodayStreaked = true
+            }
         }
         presenter.loadUserData()
         progress = (mWaterProgress * 100) / 2000

@@ -1,5 +1,7 @@
 package com.example.skripsijosh.ui.main
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -8,9 +10,12 @@ import androidx.navigation.Navigation
 import com.example.skripsijosh.R
 import com.example.skripsijosh.base.BaseActivity
 import com.example.skripsijosh.databinding.ActivityMainBinding
+import com.example.skripsijosh.pojo.UserData
+import com.example.skripsijosh.ui.register.biodata.BiodataActivity
+import com.example.skripsijosh.utils.Util
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
     private val startDestinations = mapOf(
         R.id.menuHome to R.id.homeFragment,
         R.id.menuMedals to R.id.medalsFragment,
@@ -18,22 +23,21 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         R.id.menuShop to R.id.leaderboardFragment
     )
     private lateinit var binding : ActivityMainBinding
+    private lateinit var presenter: MainPresenter
     private lateinit var homeTabContainer : View
     private lateinit var medalTabContainer : View
     private lateinit var shopTabContainer : View
     private lateinit var profileTabContainer : View
+    private var isBiodataDone = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        homeTabContainer = binding.homeTab
-        medalTabContainer = binding.medalsTab
-        profileTabContainer = binding.profileTab
-        shopTabContainer = binding.shopTab
-
-        binding.bottomNavigation.setOnItemSelectedListener(this)
+        presenter = MainPresenter(this)
+        presenter.checkBiodataDone()
+        Log.d(TAG, isBiodataDone.toString())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -88,4 +92,26 @@ class MainActivity : BaseActivity(), BottomNavigationView.OnNavigationItemSelect
         shopTabContainer.visibility = View.INVISIBLE
         container.visibility = View.VISIBLE
     }
+
+    override fun onGetDataUserSucces(userData: UserData) {
+        Log.d("biodatadone0", userData.isBiodataDone.toString())
+        if(userData.isBiodataDone == false) {
+            startActivity(Intent(this, BiodataActivity::class.java))
+        } else {
+            isBiodataDone = true
+            homeTabContainer = binding.homeTab
+            medalTabContainer = binding.medalsTab
+            profileTabContainer = binding.profileTab
+            shopTabContainer = binding.shopTab
+            binding.bottomNavigation.setOnItemSelectedListener(this)
+        }
+    }
+
+    override fun startLoading() {}
+
+    override fun stopLoading() {}
+
+    override fun showError(message: String) {}
+
+    override fun showEmpty() {}
 }
