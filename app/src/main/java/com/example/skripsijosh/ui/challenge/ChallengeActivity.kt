@@ -9,7 +9,7 @@ import com.example.skripsijosh.pojo.ChallengeDetails
 import com.example.skripsijosh.pojo.UserStreak
 import com.example.skripsijosh.pojo.UserWater
 
-class ChallengeActivity : BaseActivity(), ChallengeView {
+class ChallengeActivity : BaseActivity(), ChallengeAdapter.ChallengeListener, ChallengeView {
     private lateinit var presenter: ChallengePresenter
     private lateinit var binding : ActivityChallengeBinding
     private var challengeList: MutableList<ChallengeDetails> = arrayListOf()
@@ -57,7 +57,17 @@ class ChallengeActivity : BaseActivity(), ChallengeView {
     override fun showEmpty() {}
 
     private fun initAdapter() {
-        binding.rvChallenge.adapter = ChallengeAdapter(challengeList, this, userStreak, userWater)
+        binding.rvChallenge.adapter = ChallengeAdapter(
+            challengeList,
+            context = this,
+            listener = this@ChallengeActivity,
+            userStreak =  userStreak,
+            userWater = userWater
+        )
         binding.rvChallenge.layoutManager = LinearLayoutManager(this)
+    }
+
+    override fun onProgressCompleted(medalGot: Int) {
+        presenter.setMedal(medalGot)
     }
 }

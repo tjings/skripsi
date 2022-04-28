@@ -1,6 +1,7 @@
 package com.example.skripsijosh.ui.challenge
 
 import android.content.Context
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,11 @@ import com.example.skripsijosh.R
 import com.example.skripsijosh.pojo.ChallengeDetails
 import com.example.skripsijosh.pojo.UserStreak
 
-class ChallengeAdapter (private val dataSet: MutableList<ChallengeDetails>, private val context: Context, private val userStreak: Int, private val userWater: Int) : RecyclerView.Adapter<ChallengeAdapter.ViewHolder>() {
+class ChallengeAdapter (private val dataSet: MutableList<ChallengeDetails>,
+                        private val listener:  ChallengeListener,
+                        private val context: Context,
+                        private val userStreak: Int,
+                        private val userWater: Int) : RecyclerView.Adapter<ChallengeAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvChallengeName: TextView = itemView.findViewById(R.id.tvChallengeName)
@@ -40,15 +45,20 @@ class ChallengeAdapter (private val dataSet: MutableList<ChallengeDetails>, priv
         holder.tvChallengeName.text = dataSet[position].name
         holder.tvChallengeDesc.text = dataSet[position].desc
         holder.tvProgress.text = if (dataSet[position].streakNeeded == 0) {
-            String.format(context.getString(R.string.challenge_progress), userWater, dataSet[position].waterNeeded)
+            TextUtils.concat(String.format(context.getString(R.string.challenge_progress), userWater, dataSet[position].waterNeeded) + " mL")
         } else {
-            String.format(context.getString(R.string.challenge_progress), userStreak, dataSet[position].streakNeeded)
+            TextUtils.concat(String.format(context.getString(R.string.challenge_progress), userStreak, dataSet[position].streakNeeded) + " Streak")
         }
         if (eachProgress >= 100) {
             holder.tvCompleted.visibility = View.VISIBLE
+            listener.onProgressCompleted(dataSet[position].medalGot)
         }
         holder.progressBarChallenge.progress = eachProgress
     }
 
     override fun getItemCount() = dataSet.size
+
+    interface ChallengeListener {
+        fun onProgressCompleted(medalGot: Int)
+    }
 }
