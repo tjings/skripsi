@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/remind_me"
+            android:title="@string/remind_me" />
+
+        <ListPreference
+            android:defaultValue="2"
+            android:dialogTitle="@string/remind_me_duration"
+            android:entries="@array/pref_remind_me_to_drink"
+            android:entryValues="@array/pref_duration"
+            android:key="@string/key_duration"
+            android:summary="@string/remind_me_duration_summary"
+            android:title="@string/remind_me_duration" />
+
+
+        <com.example.skripsijosh.ui.customviews.TimePreference
+            android:key="@string/key_wake"
+            android:title="@string/wake_up_time"
+            android:defaultValue="12:00"
+            android:summary="@string/wake_up_time_summary"/>
+
+        <com.example.skripsijosh.ui.customviews.TimePreference
+            android:key="@string/key_sleep"
+            android:title="@string/sleep_time"
+            android:defaultValue="12:00"
+            android:summary="@string/sleep_time_summary"/>
+
+</PreferenceScreen>

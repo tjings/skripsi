@@ -59,4 +59,26 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <string name="remind_me">Enable Notifications</string>
+    <string name="remind_me_duration">Remind me every</string>
+    <string name="wake_up_time">Wake up time</string>
+    <string name="sleep_time">Sleep time</string>
+    <string name="remind_me_duration_summary">Set hour interval of every reminder</string>
+    <string name="wake_up_time_summary">Set wake up time</string>
+    <string name="sleep_time_summary">Set sleep time</string>
+    <string-array name="pref_duration">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="pref_remind_me_to_drink">
+        <item>2 hours</item>
+        <item>3 hours</item>
+        <item>4 hours</item>
+        <item>5 hours</item>
+    </string-array>
+    <string name="key_duration">key_duration</string>
+    <string name="key_wake">key_wake</string>
+    <string name="key_sleep">key_sleep</string>
 </resources>

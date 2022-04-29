@@ -13,6 +13,7 @@ import com.example.skripsijosh.pojo.UserData
 import com.example.skripsijosh.ui.welcome.WelcomeActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.skripsijosh.ui.main.MainActivity
+import com.example.skripsijosh.ui.settings.SettingsActivity
 import com.example.skripsijosh.utils.Util
 
 class ProfileFragment : BaseFragment(), ProfileView {
@@ -52,7 +53,9 @@ class ProfileFragment : BaseFragment(), ProfileView {
             }
         }
 
-        binding.notifFab.setOnClickListener {  }
+        binding.notifFab.setOnClickListener {
+            startActivity(Intent(context, SettingsActivity::class.java))
+        }
 
         binding.etName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
