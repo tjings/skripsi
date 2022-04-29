@@ -81,4 +81,6 @@
     <string name="key_duration">key_duration</string>
     <string name="key_wake">key_wake</string>
     <string name="key_sleep">key_sleep</string>
+    <string name="choose_image">Choose image</string>
+    <string name="upload_image">Upload image</string>
 </resources>

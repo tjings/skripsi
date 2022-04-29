@@ -1,0 +1,63 @@
+package umn.ac.id.skripsijosh.ui.profile.uploadimage
+
+import android.net.Uri
+import android.util.Log
+import umn.ac.id.skripsijosh.base.BasePresenter
+import umn.ac.id.skripsijosh.pojo.UserData
+import com.google.android.gms.tasks.Continuation
+import com.google.android.gms.tasks.Task
+import com.google.firebase.storage.UploadTask
+
+class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageView>() {
+
+    init {
+        super.attachView(view)
+    }
+
+    fun addUploadRecordToDb(newUserData: UserData){
+        view?.startLoading()
+        Log.d("tessss", newUserData.displayPic.toString())
+        db.collection("userData")
+            .document(auth.uid!!)
+            .set(newUserData)
+            .addOnSuccessListener {
+                view?.stopLoading()
+                view?.onUploadImageComplete()
+            }
+            .addOnFailureListener {
+                view?.showError(it.toString())
+            }
+    }
+
+    fun uploadImage(filePath: Uri, userData: UserData) {
+        var uploadTask = storageReference.child(auth.uid.toString()).putFile(filePath)
+        val ref = storageReference
+        uploadTask = ref.putFile(filePath)
+        val urlTask = uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+            if (!task.isSuccessful) {
+                task.exception?.let {
+                    throw it
+                }
+            }
+            ref.downloadUrl
+        }).addOnCompleteListener { task ->
+            Log.d("downloaduri0", task.result.toString())
+            if (task.isSuccessful) {
+                val downloadUri = task.result
+                Log.d("downloaduri", downloadUri.toString())
+                val newUserData = UserData(
+                    displayName = userData.displayName,
+                    gender = userData.gender,
+                    bday = userData.bday,
+                    height = userData.height,
+                    weight = userData.weight,
+                    displayPic = downloadUri.toString(),
+                    isBiodataDone = userData.isBiodataDone
+                )
+                addUploadRecordToDb(newUserData)
+            } else {
+                // Handle failures
+            }
+        }.addOnFailureListener {}
+    }
+}

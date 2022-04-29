@@ -16,13 +16,13 @@
             android:title="@string/remind_me_duration" />
 
 
-        <com.example.skripsijosh.ui.customviews.TimePreference
+        <umn.ac.id.skripsijosh.ui.customviews.TimePreference
             android:key="@string/key_wake"
             android:title="@string/wake_up_time"
             android:defaultValue="12:00"
             android:summary="@string/wake_up_time_summary"/>
 
-        <com.example.skripsijosh.ui.customviews.TimePreference
+        <umn.ac.id.skripsijosh.ui.customviews.TimePreference
             android:key="@string/key_sleep"
             android:title="@string/sleep_time"
             android:defaultValue="12:00"
