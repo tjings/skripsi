@@ -17,6 +17,7 @@ class MainPresenter (view: MainView) : BasePresenter<MainView>() {
             .document(auth.uid!!)
             .get()
             .addOnSuccessListener {
+                view?.stopLoading()
                 if (it.data != null) {
                     Log.d(TAG, it.toString())
                     val userData = it.toObject(UserData::class.java)

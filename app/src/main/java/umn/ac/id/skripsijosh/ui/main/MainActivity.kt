@@ -114,9 +114,13 @@ class MainActivity : umn.ac.id.skripsijosh.base.BaseActivity(), MainView, Bottom
         }
     }
 
-    override fun startLoading() {}
+    override fun startLoading() {
+        showLoadingProgress()
+    }
 
-    override fun stopLoading() {}
+    override fun stopLoading() {
+        dismissLoading()
+    }
 
     override fun showError(message: String) {}
 

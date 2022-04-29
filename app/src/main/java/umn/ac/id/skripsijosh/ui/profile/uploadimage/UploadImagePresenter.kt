@@ -25,14 +25,17 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
                 view?.onUploadImageComplete()
             }
             .addOnFailureListener {
+                view?.stopLoading()
                 view?.showError(it.toString())
             }
     }
 
     fun uploadImage(filePath: Uri, userData: UserData) {
         var uploadTask = storageReference.child(auth.uid.toString()).putFile(filePath)
-        val ref = storageReference
+
+        val ref = storageReference.child(auth.uid.toString())
         uploadTask = ref.putFile(filePath)
+
         val urlTask = uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
@@ -41,7 +44,6 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
             }
             ref.downloadUrl
         }).addOnCompleteListener { task ->
-            Log.d("downloaduri0", task.result.toString())
             if (task.isSuccessful) {
                 val downloadUri = task.result
                 Log.d("downloaduri", downloadUri.toString())
@@ -56,8 +58,9 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
                 )
                 addUploadRecordToDb(newUserData)
             } else {
-                // Handle failures
+                //error handling
             }
-        }.addOnFailureListener {}
+        }.addOnFailureListener {
+        }
     }
 }

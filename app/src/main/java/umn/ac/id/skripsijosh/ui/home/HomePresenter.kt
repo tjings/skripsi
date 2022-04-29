@@ -20,6 +20,7 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
             .get()
             .addOnSuccessListener {
                 if(it.exists()) {
+                    view?.stopLoading()
                     val result: UserData = it.toObject(UserData::class.java)!!
                     view?.onSuccessLoadProfile(result)
                 }
@@ -56,6 +57,7 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
                                 .document(auth.uid!!)
                                 .set(initStreak)
                                 .addOnSuccessListener {
+                                    view?.stopLoading()
                                 }
                                 .addOnFailureListener {
                                     view?.showError(it.message.toString())

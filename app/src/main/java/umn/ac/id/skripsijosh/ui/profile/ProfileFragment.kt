@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import umn.ac.id.skripsijosh.base.BaseFragment
 import umn.ac.id.skripsijosh.databinding.FragmentProfileBinding
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import androidx.fragment.app.FragmentTransaction
+import com.squareup.picasso.Picasso
 import umn.ac.id.skripsijosh.ui.profile.uploadimage.UploadImageActivity
 import umn.ac.id.skripsijosh.ui.settings.SettingsActivity
 import umn.ac.id.skripsijosh.utils.Util
@@ -42,7 +44,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
     override fun onResume() {
         super.onResume()
-        //shoudRefreshOnResume is a global var
         if (shouldRefreshOnResume) {
             val ft: FragmentTransaction = parentFragmentManager.beginTransaction()
             ft.detach(this).attach(this).commit()
@@ -55,7 +56,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         binding.logoutFab.visibility = View.GONE
         binding.logoutFabText.visibility = View.GONE
 
-        binding.imageView.setOnClickListener{
+        binding.ivProfile.setOnClickListener{
             startActivity(Intent(requireContext(), UploadImageActivity::class.java))
         }
 
@@ -180,7 +181,12 @@ class ProfileFragment : BaseFragment(), ProfileView {
         editor.putString("display_pic", userData.displayPic)
         editor.putString("is_biodata_done", userData.isBiodataDone.toString())
         editor.apply()
-
+Log.d("disp", userData.displayPic!!)
+        Picasso.get()
+            .load(userData.displayPic)
+            .resize(400, 400)
+            .centerCrop()
+            .into(binding.ivProfile)
         binding.tvName.text = userData.displayName
         binding.tvEmail.text = auth.currentUser?.email
         binding.etName.setText(userData.displayName)
