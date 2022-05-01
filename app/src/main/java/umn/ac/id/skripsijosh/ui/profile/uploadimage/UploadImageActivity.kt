@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import android.widget.Toast
 import umn.ac.id.skripsijosh.databinding.ActivityUploadImageBinding
 import umn.ac.id.skripsijosh.pojo.UserData
-import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.utils.Util
 import java.io.IOException
 
@@ -63,6 +62,10 @@ class UploadImageActivity : umn.ac.id.skripsijosh.base.BaseActivity(), UploadIma
         }
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     private fun launchGallery() {
         val intent = Intent()
         intent.type = "image/*"
@@ -72,7 +75,6 @@ class UploadImageActivity : umn.ac.id.skripsijosh.base.BaseActivity(), UploadIma
 
     override fun onUploadImageComplete() {
         finish()
-        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun startLoading() {

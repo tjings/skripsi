@@ -42,6 +42,11 @@ class ProfileFragment : BaseFragment(), ProfileView {
         shouldRefreshOnResume = true
     }
 
+    override fun onStop() {
+        super.onStop()
+        shouldRefreshOnResume = true
+    }
+
     override fun onResume() {
         super.onResume()
         if (shouldRefreshOnResume) {
