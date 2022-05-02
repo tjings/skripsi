@@ -37,7 +37,11 @@
     <string name="cm">cm</string>
     <string name="kg">kg</string>
     <string name="submit">Submit</string>
+    <string name="confirm">Yes</string>
+    <string name="cancel">Cancel</string>
     <string name="how_much_did_you_just_drink">How much did you just drink? (mL)</string>
+    <string name="are_you_sure">You sure you want to buy %s?</string>
+    <string name="purchase_failed">Failed to purchase, insufficient points.</string>
     <string name="drank_water">Hi, %s, You drank %s mL Today</string>
     <string name="add_your_progress">Add your progress</string>
     <string name="title_activity_leaderboard">LeaderboardActivity</string>

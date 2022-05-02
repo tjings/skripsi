@@ -6,12 +6,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
+import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityUploadImageBinding
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.utils.Util
 import java.io.IOException
 
-class UploadImageActivity : umn.ac.id.skripsijosh.base.BaseActivity(), UploadImageView {
+class UploadImageActivity : BaseActivity(), UploadImageView {
 
     private lateinit var binding : ActivityUploadImageBinding
     private lateinit var presenter: UploadImagePresenter

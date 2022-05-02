@@ -2,12 +2,13 @@ package umn.ac.id.skripsijosh.ui.welcome
 
 import android.content.Intent
 import android.os.Bundle
+import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityWelcomeBinding
 import umn.ac.id.skripsijosh.ui.login.LoginActivity
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.register.RegisterActivity
 
-class WelcomeActivity : umn.ac.id.skripsijosh.base.BaseActivity(), WelcomeView {
+class WelcomeActivity : BaseActivity(), WelcomeView {
     private lateinit var binding : ActivityWelcomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

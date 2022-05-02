@@ -12,8 +12,9 @@ import umn.ac.id.skripsijosh.databinding.ActivityMainBinding
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import umn.ac.id.skripsijosh.base.BaseActivity
 
-class MainActivity : umn.ac.id.skripsijosh.base.BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
     private val startDestinations = mapOf(
         R.id.menuHome to R.id.homeFragment,
         R.id.menuMedals to R.id.medalsFragment,

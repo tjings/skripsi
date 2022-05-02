@@ -6,7 +6,7 @@ import umn.ac.id.skripsijosh.pojo.UserStreak
 import umn.ac.id.skripsijosh.pojo.UserWater
 import com.google.firebase.firestore.FieldValue
 
-class ChallengePresenter (view:ChallengeView) : BasePresenter <ChallengeView>() {
+class ChallengePresenter (view: ChallengeView) : BasePresenter <ChallengeView>() {
 
     init {
         super.attachView(view)

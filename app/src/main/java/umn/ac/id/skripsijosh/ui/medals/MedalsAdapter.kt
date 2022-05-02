@@ -24,7 +24,7 @@ class MedalsAdapter(private val dataSet: MutableList<UserMedal>) : RecyclerView.
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.user_unlocked_medals, parent, false)
+            .inflate(R.layout.unlocked_medal_item, parent, false)
 
         return ViewHolder(view)
     }

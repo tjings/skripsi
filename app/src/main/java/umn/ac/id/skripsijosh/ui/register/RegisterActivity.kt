@@ -3,11 +3,12 @@ package umn.ac.id.skripsijosh.ui.register
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityRegisterBinding
 import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
 import umn.ac.id.skripsijosh.utils.Util
 
-class RegisterActivity : umn.ac.id.skripsijosh.base.BaseActivity(), RegisterView {
+class RegisterActivity : BaseActivity(), RegisterView {
 
     private lateinit var binding : ActivityRegisterBinding
     lateinit var presenter: RegisterPresenter

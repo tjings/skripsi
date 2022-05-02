@@ -1,10 +1,9 @@
 package umn.ac.id.skripsijosh.ui.register.biodata
 
 import android.util.Log
+import com.google.firebase.firestore.FieldValue
 import umn.ac.id.skripsijosh.base.BasePresenter
-import umn.ac.id.skripsijosh.pojo.UserData
-import umn.ac.id.skripsijosh.pojo.UserStreak
-import umn.ac.id.skripsijosh.pojo.UserWater
+import umn.ac.id.skripsijosh.pojo.*
 
 class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
 
@@ -31,10 +30,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
         db.collection("userData")
             .document(auth.uid!!)
             .set(user)
-            .addOnSuccessListener {
-                view?.stopLoading()
-                view?.onSaveBiodataSucces()
-            }
+            .addOnSuccessListener {}
             .addOnFailureListener {
                 Log.w("eror", "Error", it)
             }
@@ -48,13 +44,20 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
         db.collection("userStreak")
             .document(auth.uid!!)
             .set(streak)
+            .addOnSuccessListener {}
+            .addOnFailureListener {}
+        val userBalance = UserBalance(balance = 0)
+        val inventory = UserInventory(itemHave = arrayListOf())
+        db.collection("userBalance")
+            .document(auth.uid!!)
+            .set(userBalance)
             .addOnSuccessListener {
-                view?.stopLoading()
+                db.collection("userInventory")
+                    .document(auth.uid!!)
+                    .set(inventory)
             }
-            .addOnFailureListener {
-                view?.stopLoading()
-                view?.showError(it.message.toString())
-            }
+        view?.stopLoading()
+        view?.onSaveBiodataSucces()
 
     }
 }

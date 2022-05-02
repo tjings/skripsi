@@ -3,12 +3,13 @@ package umn.ac.id.skripsijosh.ui.challenge
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import umn.ac.id.skripsijosh.R
+import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityChallengeBinding
 import umn.ac.id.skripsijosh.pojo.ChallengeDetails
 import umn.ac.id.skripsijosh.pojo.UserStreak
 import umn.ac.id.skripsijosh.pojo.UserWater
 
-class ChallengeActivity : umn.ac.id.skripsijosh.base.BaseActivity(), ChallengeAdapter.ChallengeListener, ChallengeView {
+class ChallengeActivity : BaseActivity(), ChallengeAdapter.ChallengeListener, ChallengeView {
     private lateinit var presenter: ChallengePresenter
     private lateinit var binding : ActivityChallengeBinding
     private var challengeList: MutableList<ChallengeDetails> = arrayListOf()
@@ -20,13 +21,15 @@ class ChallengeActivity : umn.ac.id.skripsijosh.base.BaseActivity(), ChallengeAd
         presenter = ChallengePresenter(this)
         binding = ActivityChallengeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         presenter.getChallengeList()
         presenter.getMilestones()
+
         binding.include2.toolbar.setNavigationIcon(R.drawable.ic_back)
         binding.include2.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-
+        binding.include2.tvToolbarTitle.text = getString(R.string.challenge)
     }
 
     override fun onBackPressed() {
@@ -47,9 +50,13 @@ class ChallengeActivity : umn.ac.id.skripsijosh.base.BaseActivity(), ChallengeAd
         initAdapter()
     }
 
-    override fun startLoading() {}
+    override fun startLoading() {
+        showLoadingProgress()
+    }
 
-    override fun stopLoading() {}
+    override fun stopLoading() {
+        dismissLoading()
+    }
 
     override fun showError(message: String) {}
 

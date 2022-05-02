@@ -12,6 +12,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import umn.ac.id.skripsijosh.R
+import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityBiodataBinding
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.utils.Util
@@ -19,7 +20,7 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BiodataActivity : umn.ac.id.skripsijosh.base.BaseActivity(), BiodataView, AdapterView.OnItemSelectedListener {
+class BiodataActivity : BaseActivity(), BiodataView, AdapterView.OnItemSelectedListener {
 
     private lateinit var binding : ActivityBiodataBinding
     private lateinit var presenter: BiodataPresenter

@@ -3,11 +3,12 @@ package umn.ac.id.skripsijosh.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityLoginBinding
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.utils.Util
 
-class LoginActivity : umn.ac.id.skripsijosh.base.BaseActivity(), LoginView {
+class LoginActivity : BaseActivity(), LoginView {
     private lateinit var binding : ActivityLoginBinding
     lateinit var presenter : LoginPresenter
     var email: String? = null
