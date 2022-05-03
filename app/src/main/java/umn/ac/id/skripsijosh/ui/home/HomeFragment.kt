@@ -202,6 +202,7 @@ class HomeFragment : BaseFragment(), HomeView {
             .setBalloonAnimation(BalloonAnimation.CIRCULAR)
             .setAutoDismissDuration(3000L)
             .build()
+
         binding.srlHome.setOnRefreshListener {
             presenter.getWaterData(today = date.toString())
         }
