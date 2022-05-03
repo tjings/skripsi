@@ -66,8 +66,8 @@ class ShopActivity : BaseActivity(), ShopView {
                     override fun onPositive() {
                         if (it.itemPrice <= userBalance) {
                             Log.d("SHOP", "purchased item")
-                            val userRemainingBalance = userBalance - it.itemPrice
-                            presenter.purchaseItem(it.itemId, userRemainingBalance)
+                            val pointDeducted = -it.itemPrice
+                            presenter.purchaseItem(it.itemId, pointDeducted)
                             mDialog?.dismiss()
                         } else {
                             Log.d("SHOP", "purchase failed")

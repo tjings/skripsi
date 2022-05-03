@@ -37,12 +37,9 @@ class ShopPresenter (view: ShopView) : BasePresenter <ShopView>() {
 
     fun purchaseItem(itemId: Int, balanceLeft: Int) {
         view?.startLoading()
-        val userBalance = UserBalance(
-            balance = balanceLeft
-        )
         db.collection("userBalance")
             .document(auth.uid!!)
-            .set(userBalance)
+            .update("balance", FieldValue.increment(balanceLeft.toLong()))
             .addOnSuccessListener {
                 db.collection("userInventory")
                     .document(auth.uid!!)

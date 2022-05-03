@@ -50,7 +50,7 @@ class ChallengeAdapter (private val dataSet: MutableList<ChallengeDetails>,
         }
         if (eachProgress >= 100) {
             holder.tvCompleted.visibility = View.VISIBLE
-            listener.onProgressCompleted(dataSet[position].medalGot)
+            listener.onProgressCompleted(dataSet[position])
         }
         holder.progressBarChallenge.progress = eachProgress
     }
@@ -58,6 +58,6 @@ class ChallengeAdapter (private val dataSet: MutableList<ChallengeDetails>,
     override fun getItemCount() = dataSet.size
 
     interface ChallengeListener {
-        fun onProgressCompleted(medalGot: Int)
+        fun onProgressCompleted(challengeDetails: ChallengeDetails)
     }
 }

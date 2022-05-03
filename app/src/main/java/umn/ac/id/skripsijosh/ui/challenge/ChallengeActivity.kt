@@ -73,7 +73,13 @@ class ChallengeActivity : BaseActivity(), ChallengeAdapter.ChallengeListener, Ch
         binding.rvChallenge.layoutManager = LinearLayoutManager(this)
     }
 
-    override fun onProgressCompleted(medalGot: Int) {
-        presenter.setMedal(medalGot)
+    override fun onProgressCompleted(challengeDetails: ChallengeDetails) {
+        if(challengeDetails.userCompleted.contains(auth.uid!!)) {
+            return
+        } else {
+            presenter.setUserCompletedChallenge(challengeDetails.challengeId)
+            presenter.setMedal(challengeDetails.medalGot)
+            presenter.addPoints(challengeDetails.pointGot)
+        }
     }
 }
