@@ -7,10 +7,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.skydoves.balloon.ArrowOrientation
-import com.skydoves.balloon.Balloon
-import com.skydoves.balloon.BalloonAnimation
-import com.skydoves.balloon.balloon
+import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
 import it.sephiroth.android.library.xtooltip.ClosePolicy
 import it.sephiroth.android.library.xtooltip.Tooltip
@@ -188,27 +185,28 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     fun init() {
+        val balloon = Balloon.Builder(requireContext())
+            .setArrowSize(10)
+            .setText(requireContext().getString(R.string.tooltip_home))
+            .setTextSize(15f)
+            .setTextGravity(Gravity.START)
+            .setArrowOrientation(ArrowOrientation.TOP)
+            .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+            .setWidth(BalloonSizeSpec.WRAP)
+            .setHeight(BalloonSizeSpec.WRAP)
+            .setPadding(6)
+            .setMarginRight(8)
+            .setCornerRadius(0f)
+            .setOverlayShape(BalloonOverlayRect)
+            .setBackgroundColor(requireContext().getColor(R.color.bg_def))
+            .setBalloonAnimation(BalloonAnimation.CIRCULAR)
+            .setAutoDismissDuration(3000L)
+            .build()
         binding.srlHome.setOnRefreshListener {
             presenter.getWaterData(today = date.toString())
         }
         binding.btnTooltip.setOnClickListener {
-            val balloon = Balloon.Builder(requireContext())
-                .setLayout(R.layout.fragment_home)
-                .setArrowSize(10)
-                .setText(requireContext().getString(R.string.tooltip_home))
-                .setTextSize(15f)
-                .setTextGravity(Gravity.START)
-                .setArrowOrientation(ArrowOrientation.TOP)
-                .setArrowPosition(0.5f)
-                .setWidthRatio(0.55f)
-                .setHeight(250)
-                .setCornerRadius(4f)
-                .setOverlayShape(BalloonOverlayRect)
-                .setBackgroundColor(requireContext().getColor(R.color.black))
-                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
-                .setOnBalloonClickListener {}
-                .build()
-
+            balloon.showAlignBottom(binding.btnTooltip)
         }
         binding.rlToChallenge.setOnClickListener {
             startActivity(Intent(context, ChallengeActivity::class.java))
