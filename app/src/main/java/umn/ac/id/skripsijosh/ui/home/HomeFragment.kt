@@ -3,9 +3,17 @@ package umn.ac.id.skripsijosh.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.skydoves.balloon.ArrowOrientation
+import com.skydoves.balloon.Balloon
+import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.balloon
+import com.skydoves.balloon.overlay.BalloonOverlayRect
+import it.sephiroth.android.library.xtooltip.ClosePolicy
+import it.sephiroth.android.library.xtooltip.Tooltip
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseFragment
 import umn.ac.id.skripsijosh.databinding.FragmentHomeBinding
@@ -61,27 +69,7 @@ class HomeFragment : BaseFragment(), HomeView {
             savedInstanceState
         )
         timer.schedule(task, 0L, 1000 * 30)
-        binding.srlHome.setOnRefreshListener {
-            presenter.getWaterData(today = date.toString())
-        }
-        binding.rlToChallenge.setOnClickListener {
-            startActivity(Intent(context, ChallengeActivity::class.java))
-        }
-        binding.rltoShop.setOnClickListener {
-            startActivity(Intent(context, ShopActivity::class.java))
-        }
-        binding.tvDayAndDate.text = DateFormat.format("EEEE, dd MMMM yyyy" , Date()) as String
-        binding.fabAdd.setOnClickListener {
-            DialogUtil(requireActivity()).showDialog(
-                callback = object : DialogUtil.DialogActionCallback{
-                    override fun onPositive(waterAmt: Int?) {
-                        presenter.addWater(today = date.toString(), time = time, waterAmt = waterAmt!!)
-                    }
-                    override fun onNegative() {
-                    }
-                }
-            )
-        }
+        init()
     }
 
     override fun onLoadDataSuccess(results: MutableList<UserDailyWater>, streak: UserStreak) {
@@ -198,4 +186,48 @@ class HomeFragment : BaseFragment(), HomeView {
             isTodayStreaked = true
         }
     }
+
+    fun init() {
+        binding.srlHome.setOnRefreshListener {
+            presenter.getWaterData(today = date.toString())
+        }
+        binding.btnTooltip.setOnClickListener {
+            val balloon = Balloon.Builder(requireContext())
+                .setLayout(R.layout.fragment_home)
+                .setArrowSize(10)
+                .setText(requireContext().getString(R.string.tooltip_home))
+                .setTextSize(15f)
+                .setTextGravity(Gravity.START)
+                .setArrowOrientation(ArrowOrientation.TOP)
+                .setArrowPosition(0.5f)
+                .setWidthRatio(0.55f)
+                .setHeight(250)
+                .setCornerRadius(4f)
+                .setOverlayShape(BalloonOverlayRect)
+                .setBackgroundColor(requireContext().getColor(R.color.black))
+                .setBalloonAnimation(BalloonAnimation.CIRCULAR)
+                .setOnBalloonClickListener {}
+                .build()
+
+        }
+        binding.rlToChallenge.setOnClickListener {
+            startActivity(Intent(context, ChallengeActivity::class.java))
+        }
+        binding.rltoShop.setOnClickListener {
+            startActivity(Intent(context, ShopActivity::class.java))
+        }
+        binding.tvDayAndDate.text = DateFormat.format("EEEE, dd MMMM yyyy" , Date()) as String
+        binding.fabAdd.setOnClickListener {
+            DialogUtil(requireActivity()).showDialog(
+                callback = object : DialogUtil.DialogActionCallback{
+                    override fun onPositive(waterAmt: Int?) {
+                        presenter.addWater(today = date.toString(), time = time, waterAmt = waterAmt!!)
+                    }
+                    override fun onNegative() {
+                    }
+                }
+            )
+        }
+    }
+
 }
