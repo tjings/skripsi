@@ -26,7 +26,8 @@
                 android:src="@drawable/ic_sett"
                 app:fabSize="mini"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:backgroundTint="@color/white"/>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/notif_fab"
@@ -38,7 +39,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/add_fab"
                 app:layout_constraintStart_toStartOf="@+id/add_fab"
                 app:layout_constraintTop_toBottomOf="@+id/add_fab"
-                app:srcCompat="@drawable/ic_notif" />
+                app:srcCompat="@drawable/ic_notif"
+                android:backgroundTint="@color/white" />
 
             <TextView
                 android:id="@+id/notif_fab_text"
@@ -46,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/content_desc"
                 android:text="@string/notifications"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/notif_fab"
                 app:layout_constraintEnd_toStartOf="@+id/notif_fab"
                 app:layout_constraintTop_toTopOf="@+id/notif_fab" />
@@ -60,14 +62,15 @@
                 app:layout_constraintEnd_toEndOf="@+id/notif_fab"
                 app:layout_constraintStart_toStartOf="@+id/notif_fab"
                 app:layout_constraintTop_toBottomOf="@+id/notif_fab"
-                app:srcCompat="@drawable/ic_logout" />
+                app:srcCompat="@drawable/ic_logout"
+                android:backgroundTint="@color/white"/>
 
             <TextView
                 android:id="@+id/logout_fab_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/log_out"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@+id/logout_fab"
                 app:layout_constraintEnd_toStartOf="@+id/logout_fab"
                 app:layout_constraintTop_toTopOf="@+id/logout_fab" />
@@ -277,7 +280,7 @@
                 android:layout_height="@dimen/_44sdp"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:background="@color/col_6"
+                android:background="@drawable/rounded_edge"
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
                 android:paddingHorizontal="@dimen/_15sdp"

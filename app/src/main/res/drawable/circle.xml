@@ -10,7 +10,7 @@
             android:shape="ring"
             android:thicknessRatio="16"
             android:useLevel="false">
-            <solid android:color="#DDD" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
     <!--Adding our second item-->
@@ -27,9 +27,9 @@
                 android:thicknessRatio="16"
                 android:useLevel="true">
                 <gradient
-                    android:endColor="@color/white"
-                    android:startColor="@color/black"
-                    android:type="sweep" />
+                    android:endColor="@color/col_4"
+                    android:startColor="@color/bg_def"
+                    android:type="linear" />
 
             </shape>
         </rotate>

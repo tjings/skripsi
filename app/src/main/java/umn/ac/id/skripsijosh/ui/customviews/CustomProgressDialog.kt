@@ -33,7 +33,7 @@ class CustomProgressDialog : DialogFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.progress_circular, container, false)
         val progressBar = view.findViewById<ProgressBar>(R.id.progressCircular)
-        val selectedColor = ContextCompat.getColor(view.context, R.color.red)
+        val selectedColor = ContextCompat.getColor(view.context, R.color.grey)
         progressBar.indeterminateDrawable.setColorFilter(selectedColor, PorterDuff.Mode.SRC_IN)
         return view
     }
