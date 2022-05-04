@@ -33,7 +33,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@color/col_accent">
+                    android:background="@drawable/rounded_edge">
 
                     <ImageButton
                         android:id="@+id/btnTooltip"
@@ -54,7 +54,7 @@
                         android:progressDrawable="@drawable/circle"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvDayAndDate"
-                        tools:progress="100" />
+                        tools:progress="80" />
 
                     <TextView
                         android:id="@+id/tvHomeProgress"
@@ -104,6 +104,8 @@
                         android:layout_height="wrap_content"
                         app:fabSize="mini"
                         android:src="@drawable/ic_add"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
                         app:layout_constraintTop_toBottomOf="@+id/tvProgressML"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +129,7 @@
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:background="@color/col_accent">
+                        android:background="@drawable/rounded_edge">
 
                         <ImageView
                             android:id="@+id/ivToChallenge"
@@ -153,7 +155,7 @@
                         android:id="@+id/rltoShop"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
-                        android:background="@color/col_accent">
+                        android:background="@drawable/rounded_edge">
 
                         <ImageView
                             android:id="@+id/ivShop"

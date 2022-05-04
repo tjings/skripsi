@@ -14,22 +14,23 @@
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_sett.xml" value="0.3255" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/rounded_button_dark.xml" value="0.1" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/rounded_edge.xml" value="0.1915" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/rounded_edge_2.xml" value="0.3445" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/spinner_bg.xml" value="0.1785" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout-v31/fragment_profile.xml" value="0.18333333333333332" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_biodata.xml" value="0.33" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_challenge.xml" value="0.2740487387772552" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_challenge.xml" value="0.29927007299270075" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_gallery.xml" value="0.22" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_leaderboard.xml" value="0.17330861909175163" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_login.xml" value="0.22" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_register.xml" value="0.22" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_settings.xml" value="0.14007252946509519" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_shop.xml" value="0.1" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_shop.xml" value="0.25" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_upload_image.xml" value="0.25" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_welcome.xml" value="0.1" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/activity_welcome.xml" value="0.22" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/app_top_bar.xml" value="0.34791666666666665" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/blank_fragment.xml" value="0.11596322607605516" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/challenge_item.xml" value="0.22" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/challenge_item.xml" value="0.33" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/challenge_list.xml" value="0.2740487387772552" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/content_leaderboard.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/dialog_confirmation.xml" value="0.1" />
@@ -45,13 +46,14 @@
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/leaderboard_item.xml" value="0.5" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/login_needed.xml" value="0.16" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/progress_circular.xml" value="0.18" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/shop_item.xml" value="0.1" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/shop_item.xml" value="0.25" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/theme.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/unlocked_medal_item.xml" value="0.15049166310389056" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/user_unlocked_medals.xml" value="0.294792586054722" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/bottom_navigation.xml" value="0.25" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/navigation.xml" value="0.3338541666666667" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/profile_menu.xml" value="0.28559213339033773" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/profile_navigation.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3495" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/xml/preferences.xml" value="0.22" />
       </map>

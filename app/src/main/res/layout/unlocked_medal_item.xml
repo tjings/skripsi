@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/col_accent"
+    android:background="@drawable/rounded_edge"
     android:layout_marginBottom="@dimen/_4sdp">
 
     <androidx.cardview.widget.CardView
@@ -37,6 +37,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textColor="@color/black"
         android:textSize="@dimen/_12sdp"
         tools:text="Medal ABCDDCAd"
         android:layout_marginStart="@dimen/_5sdp"
@@ -49,6 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="4"
+        android:textColor="@color/black"
         android:ellipsize="end"
         tools:text="Youve unlodkedunlodkedunlodkedunlodkedunlodkedunlodkedunlodked ansdas dadas dansss ssssxxxxxxxxxxxxxxxxxxsss sss sssss ssssdasdadasdansdasdadasdansdasdadasdansdasdadasdansdasdadasdansdas"
         app:layout_constraintEnd_toEndOf="parent"

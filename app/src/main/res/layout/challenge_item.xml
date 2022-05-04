@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/col_accent"
+    android:background="@drawable/rounded_edge"
     android:layout_marginBottom="@dimen/_4sdp">
 
     <androidx.cardview.widget.CardView
@@ -38,6 +38,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="@dimen/_12sdp"
+        android:textColor="@color/black"
         tools:text="Medal ABCDDCAd"
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
@@ -49,6 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:maxLines="4"
+        android:textColor="@color/black"
         android:ellipsize="end"
         tools:text="Youve unlodkedunlodkedunlodkedunlodkedunlodkedunlodkedunlodked ansdas dadas dansss ssssxxxxxxxxxxxxxxxxxxsss sss sssss ssssdasdadasdansdasdadasdansdasdadasdansdasdadasdansdasdadasdansdas"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +61,7 @@
     <TextView
         android:id="@+id/tvProgress"
         android:layout_width="0dp"
+        android:textColor="@color/black"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/progressBarChallenge"
         app:layout_constraintEnd_toEndOf="@id/progressBarChallenge"
@@ -71,7 +74,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:progress="16"
+        android:background="@drawable/rounded_edge"
         android:layout_marginHorizontal="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cvChallenge" />
 

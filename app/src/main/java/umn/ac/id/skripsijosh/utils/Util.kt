@@ -1,10 +1,8 @@
 package umn.ac.id.skripsijosh.utils
 
-import android.app.Activity
 import android.content.Context
 import android.text.TextUtils
-import android.view.View
-import android.view.inputmethod.InputMethodManager
+
 
 object Util {
 
@@ -43,10 +41,13 @@ object Util {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches()
     }
 
-    fun hideKeyboard(activity: Activity, view: View?) {
-        if (view == null) return
-        val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    fun calculateNoOfColumns(
+        context: Context,
+        columnWidthDp: Float
+    ): Int { // For example columnWidthdp=180
+        val displayMetrics = context.resources.displayMetrics
+        val screenWidthDp = displayMetrics.widthPixels / displayMetrics.density
+        return (screenWidthDp / columnWidthDp + 0.5).toInt()
     }
 
 }

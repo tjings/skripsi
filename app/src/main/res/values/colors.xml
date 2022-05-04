@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#6E6E6E</color>
+    <color name="light_grey">#DAD8D8</color>
     <color name="red">#FF0000</color>
 
     <color name="transparent">#00000000</color>
@@ -10,7 +11,7 @@
     <color name="col_reg">#006EFF</color>
     <color name="col_btn">#2896FF</color>
     <color name="col_accent">#62A8F1</color>
-    <color name="col_bg">#BDC8D2FF</color>
+    <color name="col_bg">#BD96D2FF</color>
     <color name="bottom_navigation_tint_color">#FFF</color>
     <color name="bottom_navigation_base_color">#000000</color>
 
