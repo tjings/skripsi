@@ -196,7 +196,7 @@ class HomeFragment : BaseFragment(), HomeView {
             .setMarginRight(8)
             .setCornerRadius(0f)
             .setOverlayShape(BalloonOverlayRect)
-            .setBackgroundColor(requireContext().getColor(R.color.bg_def))
+            .setBackgroundColor(requireContext().getColor(R.color.col_def))
             .setBalloonAnimation(BalloonAnimation.CIRCULAR)
             .setAutoDismissDuration(3000L)
             .build()

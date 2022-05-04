@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@color/col_bg">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlHome"
@@ -32,13 +33,14 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@color/col_4">
+                    android:background="@color/col_accent">
 
                     <ImageButton
                         android:id="@+id/btnTooltip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_info"
+                        android:backgroundTint="@color/transparent"
                         android:onClick="showPopUp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -125,7 +127,7 @@
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:background="@color/col_4">
+                        android:background="@color/col_accent">
 
                         <ImageView
                             android:id="@+id/ivToChallenge"
@@ -146,39 +148,12 @@
 
                     </RelativeLayout>
 
-<!--                    <RelativeLayout-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:id="@+id/rlToLeaderboard"-->
-<!--                        android:layout_width="@dimen/_70sdp"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                        android:background="@color/col_6">-->
-
-<!--                        <ImageView-->
-<!--                            android:id="@+id/ivWhat"-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:contentDescription="@string/content_desc"-->
-<!--                            android:src="@drawable/ic_launcher_foreground" />-->
-
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_below="@+id/ivWhat"-->
-<!--                            android:layout_centerInParent="true"-->
-<!--                            android:layout_marginBottom="@dimen/_5sdp"-->
-<!--                            tools:text="What"-->
-<!--                            android:textSize="@dimen/_8ssp" />-->
-
-<!--                    </RelativeLayout>-->
-
                     <RelativeLayout
                         android:layout_weight="1"
                         android:id="@+id/rltoShop"
                         android:layout_width="@dimen/_70sdp"
                         android:layout_height="wrap_content"
-                        android:background="@color/col_4">
+                        android:background="@color/col_accent">
 
                         <ImageView
                             android:id="@+id/ivShop"

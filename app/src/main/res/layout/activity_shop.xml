@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/col_bg"
     tools:context=".ui.shop.ShopActivity">
 
     <include
@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_28sdp"
                 android:layout_margin="@dimen/_10sdp"
-                android:background="@color/bg_def"
+                android:background="@color/col_def"
                 android:padding="@dimen/_5sdp"
                 tools:text="8000 P"
                 android:textAlignment="textEnd"

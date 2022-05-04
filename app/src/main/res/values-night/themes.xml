@@ -2,11 +2,11 @@
     <!-- Base application theme. -->
     <style name="Theme.Skripsijosh" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/bg_def</item>
-        <item name="colorPrimaryVariant">@color/col_2</item>
-        <item name="colorOnPrimary">@color/col_3</item>
+        <item name="colorPrimary">@color/col_def</item>
+        <item name="colorPrimaryVariant">@color/col_reg</item>
+        <item name="colorOnPrimary">@color/col_btn</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/col_4</item>
+        <item name="colorSecondary">@color/col_accent</item>
         <item name="colorSecondaryVariant">@color/grey</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->

@@ -6,13 +6,12 @@
     <color name="red">#FF0000</color>
 
     <color name="transparent">#00000000</color>
-    <color name="bg_def">#2e84ce</color>
-    <color name="col_2">#4296dc</color>
-    <color name="col_3">#62aee7</color>
-    <color name="col_4">#93cdf1</color>
-    <color name="col_5">#ced7e5</color>
+    <color name="col_def">#0082C8</color>
+    <color name="col_reg">#006EFF</color>
+    <color name="col_btn">#2896FF</color>
+    <color name="col_accent">#62A8F1</color>
+    <color name="col_bg">#BDC8D2FF</color>
     <color name="bottom_navigation_tint_color">#FFF</color>
     <color name="bottom_navigation_base_color">#000000</color>
-    <color name="bottom_navigation_background_color">#2e84ce</color>
 
 </resources>

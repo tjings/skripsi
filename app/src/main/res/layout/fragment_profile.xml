@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment"
-    android:background="@color/col_4">
+    android:background="@color/col_bg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -90,6 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_24sdp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivProfile"
@@ -100,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_18sdp"
+                android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvName"
@@ -124,7 +126,7 @@
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/name"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvEditProfile" />
@@ -171,7 +173,7 @@
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/height"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvErrorName" />
@@ -226,7 +228,7 @@
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/weight"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvErrorHeight" />
@@ -280,9 +282,10 @@
                 android:layout_height="@dimen/_44sdp"
                 android:layout_marginHorizontal="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/rounded_edge"
+                android:backgroundTint="@color/col_btn"
                 android:textColor="@color/black"
                 android:gravity="center_vertical"
+                android:textAllCaps="false"
                 android:paddingHorizontal="@dimen/_15sdp"
                 android:text="@string/save"
                 android:textSize="@dimen/_15sdp"

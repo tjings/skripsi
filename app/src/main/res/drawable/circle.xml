@@ -27,8 +27,8 @@
                 android:thicknessRatio="16"
                 android:useLevel="true">
                 <gradient
-                    android:endColor="@color/col_4"
-                    android:startColor="@color/bg_def"
+                    android:endColor="@color/col_accent"
+                    android:startColor="@color/col_def"
                     android:type="linear" />
 
             </shape>

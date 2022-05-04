@@ -3,7 +3,7 @@
     <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorPrimary">@color/col_2</item>
+        <item name="colorPrimary">@color/col_reg</item>
 
         <!-- Set this to true if you want Full Screen without status bar -->
         <item name="android:windowFullscreen">false</item>
