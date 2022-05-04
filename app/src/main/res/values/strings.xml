@@ -78,6 +78,8 @@
     <string name="choose_image">Choose image</string>
     <string name="upload_image">Upload image</string>
     <string name="tooltip_home">Indonesian Ministry of Health stated that we need at least 2L of water daily</string>
+    <string name="tooltip_shop">You can gain points by completting challenges!</string>
     <string name="notif_sum">Enable to remind you to drink.</string>
+    <string name="completed">COMPLETED</string>
 
 </resources>

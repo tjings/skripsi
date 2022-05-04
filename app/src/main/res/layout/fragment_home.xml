@@ -126,25 +126,25 @@
                     <RelativeLayout
                         android:layout_weight="1"
                         android:id="@+id/rlToChallenge"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_300sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:background="@drawable/rounded_edge">
+                        android:background="@drawable/rounded_edge"
+                        android:padding="@dimen/_10sdp">
 
                         <ImageView
                             android:id="@+id/ivToChallenge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerHorizontal="true"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_centerInParent="true"
                             android:contentDescription="@string/content_desc"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/ic_training" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/ivToChallenge"
+                            android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginBottom="@dimen/_5sdp"
                             android:text="@string/challenge"
                             android:textSize="@dimen/_8ssp" />
 
@@ -153,24 +153,24 @@
                     <RelativeLayout
                         android:layout_weight="1"
                         android:id="@+id/rltoShop"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_edge">
+                        android:layout_width="@dimen/_300sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:background="@drawable/rounded_edge"
+                        android:padding="@dimen/_10sdp">
 
                         <ImageView
                             android:id="@+id/ivShop"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_centerInParent="true"
                             android:contentDescription="@string/content_desc"
-                            android:src="@drawable/ic_launcher_foreground" />
+                            android:src="@drawable/ic_shop" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/ivShop"
+                            android:layout_alignParentBottom="true"
                             android:layout_centerInParent="true"
-                            android:layout_marginBottom="@dimen/_5sdp"
                             android:text="@string/navigation_shop"
                             android:textSize="@dimen/_8ssp" />
 

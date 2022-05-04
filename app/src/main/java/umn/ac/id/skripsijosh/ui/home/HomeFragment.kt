@@ -28,6 +28,7 @@ class HomeFragment : BaseFragment(), HomeView {
     private lateinit var presenter: HomePresenter
     private lateinit var binding: FragmentHomeBinding
     private  var userName = ""
+    private var displayPic = ""
     private var date: CharSequence = ""
     private var time: String = ""
     private var mLatestStreak: CharSequence = ""
@@ -111,6 +112,7 @@ class HomeFragment : BaseFragment(), HomeView {
     override fun onSuccessLoadProfile(userData: UserData) {
         if (checkIfFragmentNotAttachToActivity()) return
         userName = userData.displayName.toString()
+        displayPic = userData.displayPic.toString()
         binding.tvProgressML.text = String.format(getString(R.string.drank_water), userName, mWaterProgress)
     }
 
@@ -140,6 +142,7 @@ class HomeFragment : BaseFragment(), HomeView {
                     if (mTotalStreak < mStreak) {
                         UserStreak(
                             userName = userName,
+                            displayPic = displayPic,
                             streak = 1,
                             highestStreak = mStreak,
                             latestDate = date.toString()
@@ -147,6 +150,7 @@ class HomeFragment : BaseFragment(), HomeView {
                     } else {
                         UserStreak(
                             userName = userName,
+                            displayPic = displayPic,
                             streak = 1,
                             highestStreak = mTotalStreak,
                             latestDate = date.toString()
@@ -155,6 +159,7 @@ class HomeFragment : BaseFragment(), HomeView {
                 } else {
                     UserStreak(
                         userName = userName,
+                        displayPic = displayPic,
                         streak = 0,
                         highestStreak = mTotalStreak,
                         latestDate = mLatestStreak.toString()
@@ -164,6 +169,7 @@ class HomeFragment : BaseFragment(), HomeView {
                 if (mStreak < mTotalStreak) {
                     UserStreak(
                         userName = userName,
+                        displayPic = displayPic,
                         streak = mStreak + 1,
                         highestStreak = mTotalStreak,
                         latestDate = date.toString()
@@ -171,6 +177,7 @@ class HomeFragment : BaseFragment(), HomeView {
                 } else {
                     UserStreak(
                         userName = userName,
+                        displayPic = displayPic,
                         streak = mStreak + 1,
                         highestStreak = mStreak + 1,
                         latestDate = date.toString()

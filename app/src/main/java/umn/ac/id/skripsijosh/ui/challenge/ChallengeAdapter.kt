@@ -5,7 +5,6 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -23,7 +22,6 @@ class ChallengeAdapter (private val dataSet: MutableList<ChallengeDetails>,
         val tvChallengeDesc: TextView = itemView.findViewById(R.id.tvChallengeDesc)
         val tvProgress: TextView = itemView.findViewById(R.id.tvProgress)
         val progressBarChallenge: ProgressBar = itemView.findViewById(R.id.progressBarChallenge)
-        val ivChallenge: ImageView = itemView.findViewById(R.id.ivChallenge)
         val tvCompleted: TextView = itemView.findViewById(R.id.tvCompleted)
     }
 

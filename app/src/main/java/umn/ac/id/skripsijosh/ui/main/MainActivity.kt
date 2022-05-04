@@ -26,7 +26,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         R.id.menuHome to R.id.homeFragment,
         R.id.menuMedals to R.id.medalsFragment,
         R.id.menuProfile to R.id.profileFragment,
-        R.id.menuShop to R.id.leaderboardFragment
+        R.id.menuLeaderboard to R.id.leaderboardFragment
     )
     private lateinit var binding : ActivityMainBinding
     private lateinit var presenter: MainPresenter
@@ -75,10 +75,10 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 makeOtherInvisible(medalTabContainer)
                 return true
             }
-            R.id.menuShop -> {
+            R.id.menuLeaderboard -> {
                 Navigation.findNavController(this, R.id.shopTab).apply {
                     graph = navInflater.inflate(R.navigation.navi_graph).apply {
-                        setStartDestination(startDestinations.getValue(R.id.menuShop))
+                        setStartDestination(startDestinations.getValue(R.id.menuLeaderboard))
                     }
                 }
                 makeOtherInvisible(shopTabContainer)

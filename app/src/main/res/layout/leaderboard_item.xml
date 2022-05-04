@@ -10,15 +10,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvLeaderboard"
-        android:layout_width="@dimen/_45sdp"
-        android:layout_height="@dimen/_45sdp"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
         app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="@dimen/_6sdp"
+        app:cardCornerRadius="@dimen/_19sdp"
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="3.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:contentDescription="@string/content_desc"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/ic_account_circle" />
 
     </androidx.cardview.widget.CardView>
 

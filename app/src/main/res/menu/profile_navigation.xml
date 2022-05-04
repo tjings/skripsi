@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuHome"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_home"
         android:title="@string/navigation_home" />
 
     <item
         android:id="@+id/menuMedals"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_medal"
         android:title="@string/navigation_medals" />
 
     <item
-        android:id="@+id/menuShop"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:id="@+id/menuLeaderboard"
+        android:icon="@drawable/ic_leaderboard"
         android:title="@string/leaderboard" />
 
     <item
         android:id="@+id/menuProfile"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_account_circle"
         android:title="@string/navigation_profile" />
 </menu>

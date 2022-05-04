@@ -186,7 +186,6 @@ class ProfileFragment : BaseFragment(), ProfileView {
         editor.putString("display_pic", userData.displayPic)
         editor.putString("is_biodata_done", userData.isBiodataDone.toString())
         editor.apply()
-Log.d("disp", userData.displayPic!!)
         Picasso.get()
             .load(userData.displayPic)
             .resize(400, 400)

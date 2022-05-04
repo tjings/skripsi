@@ -11,8 +11,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvShop"
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_90sdp"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_130sdp"
         app:cardBackgroundColor="@color/transparent"
         app:cardCornerRadius="@dimen/_6sdp"
         app:cardElevation="0dp"
@@ -51,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ellipsize="end"
-        android:maxLines="2"
+        android:maxLines="3"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@id/cvShop"
         app:layout_constraintStart_toStartOf="@+id/cvShop"

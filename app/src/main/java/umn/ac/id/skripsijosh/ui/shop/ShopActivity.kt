@@ -2,8 +2,11 @@ package umn.ac.id.skripsijosh.ui.shop
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.skydoves.balloon.*
+import com.skydoves.balloon.overlay.BalloonOverlayRect
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityShopBinding
@@ -33,7 +36,6 @@ class ShopActivity : BaseActivity(), ShopView {
             onBackPressed()
         }
         binding.include2.tvToolbarTitle.text = getString(R.string.navigation_shop)
-
     }
 
     override fun onBackPressed() {
@@ -53,12 +55,31 @@ class ShopActivity : BaseActivity(), ShopView {
     override fun onGetBalanceSuccess(result: UserBalance) {
         userBalance = result.balance
         binding.tvBalance.text = String.format("$userBalance P")
+
+        Balloon.Builder(this)
+            .setArrowSize(10)
+            .setText(getString(R.string.tooltip_shop))
+            .setTextSize(15f)
+            .setTextGravity(Gravity.START)
+            .setArrowOrientation(ArrowOrientation.TOP)
+            .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+            .setWidth(BalloonSizeSpec.WRAP)
+            .setHeight(BalloonSizeSpec.WRAP)
+            .setPadding(6)
+            .setMarginRight(8)
+            .setCornerRadius(0f)
+            .setOverlayShape(BalloonOverlayRect)
+            .setBackgroundColor(getColor(R.color.col_def))
+            .setBalloonAnimation(BalloonAnimation.CIRCULAR)
+            .setAutoDismissDuration(5000L)
+            .build()
+            .showAlignBottom(binding.tvBalance)
     }
 
     private fun initAdapter() {
         val adapter = ShopAdapter(itemList)
         binding.rvShop.adapter = adapter
-        binding.rvShop.layoutManager = GridLayoutManager(this, 3)
+        binding.rvShop.layoutManager = GridLayoutManager(this, 2)
 
         val spacing = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._10sdp) / 2
         binding.rvShop.apply {
