@@ -2,15 +2,12 @@
     <string name="app_name">skripsian</string>
     <string name="content_desc">Content Description</string>
     <string name="log_in">Log In</string>
-    <string name="sign_in">Log in</string>
-    <string name="sign_up">Register</string>
     <string name="close">Close</string>
     <string name="navigation_home">Home</string>
     <string name="navigation_medals">Medals</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="navigation_shop">Shop</string>
     <string name="navigation_profile">Profile</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="create_an_account">Create an account</string>
     <string name="havent_acc">Haven\'t an account? Register here!</string>
@@ -25,9 +22,7 @@
     <string name="register">Register</string>
     <string name="password">Password</string>
     <string name="log_out">Log out</string>
-    <string name="about">About</string>
     <string name="notifications">Notifications</string>
-    <string name="edit_profile">Edit Profile</string>
     <string name="complete_your_data_first">Complete your data first</string>
     <string name="height">Height</string>
     <string name="weight">Weight</string>
@@ -64,28 +59,25 @@
         <item>Female</item>
     </string-array>
     <string name="remind_me">Enable Notifications</string>
-    <string name="remind_me_duration">Remind me every</string>
     <string name="wake_up_time">Wake up time</string>
     <string name="sleep_time">Sleep time</string>
-    <string name="remind_me_duration_summary">Set hour interval of every reminder</string>
     <string name="wake_up_time_summary">Set wake up time</string>
     <string name="sleep_time_summary">Set sleep time</string>
-    <string-array name="pref_duration">
+    <string-array name="notif_select_value">
         <item>0</item>
         <item>1</item>
-        <item>2</item>
-        <item>3</item>
     </string-array>
-    <string-array name="pref_remind_me_to_drink">
-        <item>2 hours</item>
-        <item>3 hours</item>
-        <item>4 hours</item>
-        <item>5 hours</item>
+    <string-array name="notif_select">
+        <item>Disable</item>
+        <item>Enable</item>
     </string-array>
+    <string name="key_enable_notif">key_notif</string>
     <string name="key_duration">key_duration</string>
     <string name="key_wake">key_wake</string>
     <string name="key_sleep">key_sleep</string>
     <string name="choose_image">Choose image</string>
     <string name="upload_image">Upload image</string>
     <string name="tooltip_home">Indonesian Ministry of Health stated that we need at least 2L of water daily</string>
+    <string name="notif_sum">Enable to remind you to drink.</string>
+
 </resources>

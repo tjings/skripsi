@@ -9,8 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
-import it.sephiroth.android.library.xtooltip.ClosePolicy
-import it.sephiroth.android.library.xtooltip.Tooltip
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseFragment
 import umn.ac.id.skripsijosh.databinding.FragmentHomeBinding

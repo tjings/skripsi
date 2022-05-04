@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="@string/remind_me"
-            android:title="@string/remind_me" />
-
         <ListPreference
-            android:defaultValue="2"
-            android:dialogTitle="@string/remind_me_duration"
-            android:entries="@array/pref_remind_me_to_drink"
-            android:entryValues="@array/pref_duration"
-            android:key="@string/key_duration"
-            android:summary="@string/remind_me_duration_summary"
-            android:title="@string/remind_me_duration" />
-
+            android:defaultValue="0"
+            android:entries="@array/notif_select"
+            android:entryValues="@array/notif_select_value"
+            android:key="@string/key_enable_notif"
+            android:summary="@string/notif_sum"
+            android:title="@string/remind_me" />
 
         <umn.ac.id.skripsijosh.ui.customviews.TimePreference
             android:key="@string/key_wake"

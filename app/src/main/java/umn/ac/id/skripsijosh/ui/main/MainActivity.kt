@@ -1,6 +1,8 @@
 package umn.ac.id.skripsijosh.ui.main
 
+import android.app.*
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +15,11 @@ import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import umn.ac.id.skripsijosh.base.BaseActivity
+import umn.ac.id.skripsijosh.ui.notification.*
+import umn.ac.id.skripsijosh.ui.notification.Notification
+import umn.ac.id.skripsijosh.utils.Util
+import java.time.LocalDateTime
+import java.util.*
 
 class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
     private val startDestinations = mapOf(
@@ -27,16 +34,25 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     private lateinit var medalTabContainer : View
     private lateinit var shopTabContainer : View
     private lateinit var profileTabContainer : View
+    private var notificationManager: NotificationManager? = null
     private var isBiodataDone = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter = MainPresenter(this)
         presenter.checkBiodataDone()
         Log.d(TAG, isBiodataDone.toString())
+        if(sharedPreferences.getBoolean("enable_notif", true)) {
+            createNotificationChannel()
+        } else {
+            if(notificationManager != null) {
+                notificationManager!!.cancelAll()
+            } else {
+                return
+            }
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -126,4 +142,85 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     override fun showError(message: String) {}
 
     override fun showEmpty() {}
+
+    private fun createNotificationChannel() {
+        val name = "Notif Channel"
+        val desc = "Notif desc"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel(channelID, name, importance)
+        channel.description = desc
+        notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager!!.createNotificationChannel(channel)
+
+        //scheduler
+        val intent = Intent(applicationContext, Notification::class.java)
+
+        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val wakeHour = sharedPreferences.getString("wake_hour", "").toString()
+        val wakeMins = sharedPreferences.getString("wake_minute", "").toString()
+        val sleepHour = sharedPreferences.getString("sleep_hour", "").toString()
+        val sleepMins = sharedPreferences.getString("sleep_minute", "").toString()
+
+        if(Util.isNotNull(wakeHour) && Util.isNotNull(wakeMins)) {
+            val pendingIntent = PendingIntent.getBroadcast(
+                applicationContext,
+                notificationID,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent. FLAG_UPDATE_CURRENT
+            )
+            val title = "Its time to drink!"
+            val message = "Good morning, start your day with some two cup of water!"
+            intent.putExtra(titleExtra, title)
+            intent.putExtra(messageExtra, message)
+            val wakeTime = setTime(hourOfDay = wakeHour.toInt(), minutes = wakeMins.toInt())
+            Log.d("wake", wakeTime.toString())
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                wakeTime,
+                pendingIntent
+            )
+        }
+        if(Util.isNotNull(sleepHour) && Util.isNotNull(sleepMins)) {
+            val pendingIntent = PendingIntent.getBroadcast(
+                applicationContext,
+                notificationID,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent. FLAG_UPDATE_CURRENT
+            )
+            val title = "Its time to drink!"
+            val message = "Good night, drink some water to keep you hydrated throughout your sleep!"
+            intent.putExtra(titleExtra, title)
+            intent.putExtra(messageExtra, message)
+            val sleepTime = setTime(hourOfDay = sleepHour.toInt() - 1, minutes = sleepMins.toInt())
+            Log.d("sleep", sleepTime.toString())
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                sleepTime,
+                pendingIntent
+            )
+        }
+        val pendingIntent = PendingIntent.getBroadcast(
+            applicationContext,
+            notificationID,
+            intent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent. FLAG_UPDATE_CURRENT
+        )
+        val title = "Its time to drink!"
+        val message = "Ugh, your body feels thirsty. Go drink some water, and check in!"
+        intent.putExtra(titleExtra, title)
+        intent.putExtra(messageExtra, message)
+        val time = setTime()
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            time,
+            pendingIntent
+        )
+    }
+
+    private fun setTime(hourOfDay: Int = 16, minutes: Int = 30): Long {
+        val current = LocalDateTime.now()
+        val calendar = Calendar.getInstance()
+        calendar.set(current.year, current.monthValue-1, current.dayOfMonth, hourOfDay, minutes)
+        return calendar.timeInMillis
+    }
 }
