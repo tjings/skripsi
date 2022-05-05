@@ -153,10 +153,10 @@ class ProfileFragment : BaseFragment(), ProfileView {
         if(!Util.isNotNull(name)) {
             binding.tvErrorName.visibility = View.VISIBLE
         }
-        if(!Util.isNotNull(height)) {
+        else if(!Util.isNotNull(height)) {
             binding.tvErrorHeight.visibility = View.VISIBLE
         }
-        if(!Util.isNotNull(weight)) {
+        else if(!Util.isNotNull(weight)) {
             binding.tvErrorWeight.visibility = View.VISIBLE
         }
         else {
