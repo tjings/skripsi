@@ -8,6 +8,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
 import umn.ac.id.skripsijosh.R
@@ -35,6 +36,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
     private var date: CharSequence = ""
     private var time: String = ""
     private var mLatestStreak: CharSequence = ""
+    private var selectedTheme = ""
     private var mWaterProgress = 0
     private var mStreak = 0
     private var mTotalStreak = 0
@@ -68,6 +70,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
             savedInstanceState
         )
         timer.schedule(task, 0L, 1000 * 30)
+        selectedTheme = sharedPreferences.getString("theme_applied", "circle").toString()
         init()
     }
 
@@ -141,7 +144,8 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
     }
 
     override fun onChangeThemeSuccess(themeId: String) {
-        Log.d("theme", sharedPreferences.getString("theme_applied", "")!!)
+        val img: Int = resources.getIdentifier(themeId + "_theme", "drawable", context?.packageName)
+        binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
     }
 
     private fun setStreak() {
@@ -199,6 +203,9 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
     }
 
     fun init() {
+        val img: Int = resources.getIdentifier(selectedTheme + "_theme", "drawable", context?.packageName)
+        binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
+
         val balloon = Balloon.Builder(requireContext())
             .setArrowSize(10)
             .setText(requireContext().getString(R.string.tooltip_home))

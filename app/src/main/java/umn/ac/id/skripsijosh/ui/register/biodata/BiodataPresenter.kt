@@ -47,7 +47,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
             .addOnSuccessListener {}
             .addOnFailureListener {}
         val userBalance = UserBalance(balance = 0)
-        val inventory = UserInventory(itemHave = arrayListOf())
+        val inventory = UserInventory(itemHave = arrayListOf("circle"))
         db.collection("userBalance")
             .document(auth.uid!!)
             .set(userBalance)

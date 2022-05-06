@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import umn.ac.id.skripsijosh.R
 
 
-class SelectThemeAdapter (private val dataSet: MutableList<String>,
+class SelectThemeAdapter (private var dataSet: MutableList<String>,
                             private val activity: Activity) : RecyclerView.Adapter<SelectThemeAdapter.ViewHolder>() {
 
     private var selectedPosition = -1
