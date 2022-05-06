@@ -93,12 +93,10 @@ class ShopActivity : BaseActivity(), ShopView {
                 callback = object : DialogUtil.DialogConfirmationCallback {
                     override fun onPositive() {
                         if (it.itemPrice <= userBalance) {
-                            Log.d("SHOP", "purchased item")
                             val pointDeducted = -it.itemPrice
                             presenter.purchaseItem(it.itemId, pointDeducted)
                             mDialog?.dismiss()
                         } else {
-                            Log.d("SHOP", "purchase failed")
                             DialogUtil(this@ShopActivity).showFailed()
                         }
                     }

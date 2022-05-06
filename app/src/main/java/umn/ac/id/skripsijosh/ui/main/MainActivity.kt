@@ -43,7 +43,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         setContentView(binding.root)
         presenter = MainPresenter(this)
         presenter.checkBiodataDone()
-        Log.d(TAG, isBiodataDone.toString())
         if(sharedPreferences.getBoolean("enable_notif", true)) {
             createNotificationChannel()
         } else {
@@ -94,7 +93,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
                 return true
             }
             else -> {
-                Log.d("error", "error on navigating tab")
                 return false
             }
         }
@@ -175,7 +173,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
             intent.putExtra(titleExtra, title)
             intent.putExtra(messageExtra, message)
             val wakeTime = setTime(hourOfDay = wakeHour.toInt(), minutes = wakeMins.toInt())
-            Log.d("wake", wakeTime.toString())
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
                 wakeTime,
@@ -194,7 +191,6 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
             intent.putExtra(titleExtra, title)
             intent.putExtra(messageExtra, message)
             val sleepTime = setTime(hourOfDay = sleepHour.toInt() - 1, minutes = sleepMins.toInt())
-            Log.d("sleep", sleepTime.toString())
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
                 sleepTime,

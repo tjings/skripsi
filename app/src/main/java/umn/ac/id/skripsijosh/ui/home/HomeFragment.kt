@@ -3,6 +3,7 @@ package umn.ac.id.skripsijosh.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,6 @@ import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.pojo.UserStreak
 import umn.ac.id.skripsijosh.ui.challenge.ChallengeActivity
 import umn.ac.id.skripsijosh.ui.home.selecttheme.SelectThemeFragment
-import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.shop.ShopActivity
 import umn.ac.id.skripsijosh.utils.DialogUtil
 import umn.ac.id.skripsijosh.utils.Util
@@ -140,14 +140,9 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         presenter.getWaterData(today = date.toString())
     }
 
-    override fun onDismissed() {
-        if (checkIfFragmentNotAttachToActivity()) return
-    }
-
     override fun onChangeThemeSuccess(themeId: String) {
-        binding.progressBar.progressDrawable
+        Log.d("theme", sharedPreferences.getString("theme_applied", "")!!)
     }
-
 
     private fun setStreak() {
         if (!isTodayStreaked) {
@@ -229,8 +224,8 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
             balloon.showAlignBottom(binding.btnTooltip)
         }
         binding.btnChangeProgressBar.setOnClickListener {
-            val fragment = SelectThemeFragment()
-            fragment.show(childFragmentManager, "SelectThemeFragment")
+            val fragment = SelectThemeFragment.getInstance(callback = this@HomeFragment)
+            fragment.show(childFragmentManager, SelectThemeFragment.TAG)
         }
         binding.rlToChallenge.setOnClickListener {
             startActivity(Intent(context, ChallengeActivity::class.java))

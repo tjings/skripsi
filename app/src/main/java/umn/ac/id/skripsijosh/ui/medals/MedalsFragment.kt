@@ -30,8 +30,6 @@ class MedalsFragment : BaseFragment(), MedalsView {
     override fun onGetMedalSuccess(medalDeets: UserMedal) {
         if (checkIfFragmentNotAttachToActivity()) return
         medalDetails.add(medalDeets)
-        Log.d("medalname", medalDeets.name)
-        Log.d("medaldeets", medalDeets.desc)
         initAdapter()
     }
 

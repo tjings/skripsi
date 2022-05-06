@@ -15,7 +15,17 @@ class SelectThemeFragment : BaseDialogFragment(), SelectThemeView {
     private lateinit var presenter: SelectThemePresenter
     private lateinit var binding: FragmentSelectThemeBinding
     private var itemList: MutableList<String> = arrayListOf()
+    private var selectedTheme = ""
     private var mCallback: SelectThemeListener? = null
+
+    companion object {
+        const val TAG = "SelectThemeFragment"
+        fun getInstance(callback: SelectThemeListener) : SelectThemeFragment {
+            val fragment = SelectThemeFragment()
+            fragment.mCallback = callback
+            return fragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +41,17 @@ class SelectThemeFragment : BaseDialogFragment(), SelectThemeView {
         presenter = SelectThemePresenter(this)
 
         presenter.getItemList()
+        selectedTheme = sharedPreferences.getString("theme_applied", "").toString()
 
         binding.btnCancel.setOnClickListener {
-            mCallback?.onDismissed()
+            dismiss()
+        }
+
+        binding.btnConfirm.setOnClickListener {
+            val editor = sharedPreferences.edit()
+            editor.putString("theme_applied", selectedTheme)
+            editor.apply()
+            mCallback?.onChangeThemeSuccess(selectedTheme)
             dismiss()
         }
         return binding.root
@@ -48,16 +66,17 @@ class SelectThemeFragment : BaseDialogFragment(), SelectThemeView {
     private fun initAdapter() {
         val adapter = SelectThemeAdapter(itemList, requireActivity())
         binding.rvTheme.adapter = adapter
-        binding.rvTheme.layoutManager = GridLayoutManager(requireActivity(), 2)
+        binding.rvTheme.layoutManager = GridLayoutManager(requireActivity(), 3)
+
+        adapter.onItemClick = {
+            selectedTheme = it
+        }
 
         val spacing = resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._10sdp) / 2
         binding.rvTheme.apply {
             setPadding(spacing, spacing, spacing, spacing)
             clipToPadding = false
             clipChildren = false
-        }
-        adapter.onItemClick = {
-            mCallback?.onChangeThemeSuccess(it)
         }
     }
 
@@ -76,8 +95,6 @@ class SelectThemeFragment : BaseDialogFragment(), SelectThemeView {
     override fun showEmpty() {}
 
     interface SelectThemeListener {
-        fun onDismissed()
         fun onChangeThemeSuccess(themeId: String)
     }
-
 }

@@ -19,7 +19,6 @@ class MainPresenter (view: MainView) : BasePresenter<MainView>() {
             .addOnSuccessListener {
                 view?.stopLoading()
                 if (it.data != null) {
-                    Log.d(TAG, it.toString())
                     val userData = it.toObject(UserData::class.java)
                     view?.onGetDataUserSucces(userData!!)
                 } else {

@@ -19,10 +19,8 @@ class LoginPresenter (view: LoginView) : BasePresenter<LoginView>() {
                     .addOnCompleteListener(activity) { task ->
                         view?.stopLoading()
                         if (task.isSuccessful) {
-                            Log.d(TAG, "signInWithEmail:success")
                             view?.onLoginSuccesful()
                         } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.exception)
                             Toast.makeText(activity, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show()
                         }

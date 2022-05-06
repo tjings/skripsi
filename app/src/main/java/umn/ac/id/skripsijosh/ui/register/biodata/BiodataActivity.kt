@@ -160,7 +160,6 @@ class BiodataActivity : BaseActivity(), BiodataView, AdapterView.OnItemSelectedL
     override fun onNothingSelected(p0: AdapterView<*>?) {}
 
     private fun saveUserData() {
-        Log.d("gender", gender.toString())
         displayName = binding.etName.text.toString()
         bday = binding.etBday.text.toString()
         weight = binding.etWeight.text.toString()

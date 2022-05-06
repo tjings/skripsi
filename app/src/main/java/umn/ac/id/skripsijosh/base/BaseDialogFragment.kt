@@ -1,12 +1,21 @@
 package umn.ac.id.skripsijosh.base
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.view.View
 import androidx.fragment.app.DialogFragment
+import androidx.preference.PreferenceManager
 import umn.ac.id.skripsijosh.ui.customviews.CustomProgressDialog
 
 abstract class BaseDialogFragment : DialogFragment() {
+    lateinit var sharedPreferences: SharedPreferences
     lateinit var rootView: View
     var progressOnly: CustomProgressDialog? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
+    }
 
     override fun onDetach() {
         super.onDetach()

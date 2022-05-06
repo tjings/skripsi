@@ -15,7 +15,6 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
     }
 
     fun addUploadRecordToDb(newUserData: UserData){
-        Log.d("tessss", newUserData.displayPic.toString())
         db.collection("userData")
             .document(auth.uid!!)
             .set(newUserData)
@@ -45,7 +44,6 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
         }).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val downloadUri = task.result
-                Log.d("downloaduri", downloadUri.toString())
                 val newUserData = UserData(
                     displayName = userData.displayName,
                     gender = userData.gender,

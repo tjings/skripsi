@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_4sdp"
-    android:background="@drawable/rounded_edge"
+    android:background="@drawable/item_select"
     android:orientation="vertical"
     android:padding="@dimen/_8sdp">
 

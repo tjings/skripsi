@@ -40,7 +40,6 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
                 val results: MutableList<UserDailyWater> = arrayListOf()
                 for (document in data) {
                     val result = document.toObject(UserDailyWater::class.java)
-                    Log.d(TAG, result.toString())
                     results.add(result)
                 }
                 db.collection("userStreak")
