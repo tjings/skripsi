@@ -7,12 +7,21 @@
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/button_active.xml" value="0.1915" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/button_inactive.xml" value="0.178" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle.xml" value="0.299" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_beach.xml" value="0.1795" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_earth.xml" value="0.1915" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_fire.xml" value="0.18" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_metallic.xml" value="0.1795" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_steampunk.xml" value="0.1795" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_thunder.xml" value="0.1795" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/circle_woody.xml" value="0.1795" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/dialog_prom.xml" value="0.2905" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_add.xml" value="0.1915" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_arrow_down.xml" value="0.192" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_down_black.xml" value="0.192" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_medal.xml" value="0.1795" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_sett.xml" value="0.3255" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_shop.xml" value="0.2725" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/ic_trophy.xml" value="0.1" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/rounded_button_dark.xml" value="0.1" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/rounded_edge.xml" value="0.1915" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/drawable/rounded_edge_2.xml" value="0.3445" />
@@ -37,10 +46,12 @@
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/dialog_confirmation.xml" value="0.1" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/dialog_failed.xml" value="0.1" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/dialog_prom.xml" value="0.1" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/dialog_select_theme.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_home.xml" value="0.30085470085470084" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_leaderboard.xml" value="0.2740487387772552" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_medals.xml" value="0.25" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_select_theme.xml" value="0.2740487387772552" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_shop.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/fragment_timer.xml" value="0.23164097914777879" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/leaderboard.xml" value="0.2740487387772552" />
@@ -49,13 +60,16 @@
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/progress_circular.xml" value="0.18" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/shop_item.xml" value="0.25" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/theme.xml" value="0.28559213339033773" />
-        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/unlocked_medal_item.xml" value="0.15049166310389056" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/theme_owned.xml" value="0.2740487387772552" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/unlocked_medal_item.xml" value="0.33" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/layout/user_unlocked_medals.xml" value="0.294792586054722" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/bottom_navigation.xml" value="0.25" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/navigation.xml" value="0.3338541666666667" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/profile_menu.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/menu/profile_navigation.xml" value="0.28559213339033773" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3495" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/mipmap-anydpi-v26/ic_logo.xml" value="0.3365" />
+        <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/mipmap-anydpi-v26/ic_trophy.xml" value="0.3495" />
         <entry key="..\:/Users/josh/AndroidStudioProjects/skrissiskpsi/app/src/main/res/xml/preferences.xml" value="0.22" />
       </map>
     </option>

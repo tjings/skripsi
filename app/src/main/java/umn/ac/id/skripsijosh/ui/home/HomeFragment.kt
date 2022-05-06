@@ -16,6 +16,8 @@ import umn.ac.id.skripsijosh.pojo.UserDailyWater
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.pojo.UserStreak
 import umn.ac.id.skripsijosh.ui.challenge.ChallengeActivity
+import umn.ac.id.skripsijosh.ui.home.selecttheme.SelectThemeFragment
+import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.shop.ShopActivity
 import umn.ac.id.skripsijosh.utils.DialogUtil
 import umn.ac.id.skripsijosh.utils.Util
@@ -24,7 +26,8 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class HomeFragment : BaseFragment(), HomeView {
+
+class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeListener {
     private lateinit var presenter: HomePresenter
     private lateinit var binding: FragmentHomeBinding
     private  var userName = ""
@@ -117,10 +120,12 @@ class HomeFragment : BaseFragment(), HomeView {
     }
 
     override fun startLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
         showLoadingProgressOnly()
     }
 
     override fun stopLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
         binding.srlHome.isRefreshing = false
         dismissLoadingProgress()
     }
@@ -134,6 +139,15 @@ class HomeFragment : BaseFragment(), HomeView {
         date = DateFormat.format("ddMMMyy", Date()) as String
         presenter.getWaterData(today = date.toString())
     }
+
+    override fun onDismissed() {
+        if (checkIfFragmentNotAttachToActivity()) return
+    }
+
+    override fun onChangeThemeSuccess(themeId: String) {
+        binding.progressBar.progressDrawable
+    }
+
 
     private fun setStreak() {
         if (!isTodayStreaked) {
@@ -214,6 +228,10 @@ class HomeFragment : BaseFragment(), HomeView {
         binding.btnTooltip.setOnClickListener {
             balloon.showAlignBottom(binding.btnTooltip)
         }
+        binding.btnChangeProgressBar.setOnClickListener {
+            val fragment = SelectThemeFragment()
+            fragment.show(childFragmentManager, "SelectThemeFragment")
+        }
         binding.rlToChallenge.setOnClickListener {
             startActivity(Intent(context, ChallengeActivity::class.java))
         }
@@ -233,5 +251,4 @@ class HomeFragment : BaseFragment(), HomeView {
             )
         }
     }
-
 }

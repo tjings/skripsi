@@ -1,15 +1,19 @@
 package umn.ac.id.skripsijosh.ui.shop
 
+import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.common.reflect.Reflection.getPackageName
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.pojo.ShopItem
 
-class ShopAdapter (private val dataSet:  MutableList<ShopItem>): RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
+class ShopAdapter (private val dataSet:  MutableList<ShopItem>,
+                    private val activity: Activity): RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
 
     var onItemClick: ((ShopItem) -> Unit)? = null
 
@@ -33,6 +37,8 @@ class ShopAdapter (private val dataSet:  MutableList<ShopItem>): RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val img: Int = activity.resources.getIdentifier(dataSet[position].itemId, "drawable", activity.packageName)
+        holder.ivItemPic.setImageResource(img)
         holder.tvItemName.text = dataSet[position].itemName
         holder.tvItemDesc.text = dataSet[position].itemDesc
         holder.tvItemPrice.text = dataSet[position].itemPrice.toString()

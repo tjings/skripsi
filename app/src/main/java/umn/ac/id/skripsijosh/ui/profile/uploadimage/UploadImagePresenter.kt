@@ -15,13 +15,11 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
     }
 
     fun addUploadRecordToDb(newUserData: UserData){
-        view?.startLoading()
         Log.d("tessss", newUserData.displayPic.toString())
         db.collection("userData")
             .document(auth.uid!!)
             .set(newUserData)
             .addOnSuccessListener {
-                view?.stopLoading()
                 view?.onUploadImageComplete()
             }
             .addOnFailureListener {
@@ -31,6 +29,7 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
     }
 
     fun uploadImage(filePath: Uri, userData: UserData) {
+        view?.startLoading()
         var uploadTask = storageReference.child(auth.uid.toString()).putFile(filePath)
 
         val ref = storageReference.child(auth.uid.toString())
@@ -57,10 +56,10 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
                     isBiodataDone = userData.isBiodataDone
                 )
                 addUploadRecordToDb(newUserData)
+                view?.stopLoading()
             } else {
                 //error handling
             }
-        }.addOnFailureListener {
-        }
+        }.addOnFailureListener {}
     }
 }

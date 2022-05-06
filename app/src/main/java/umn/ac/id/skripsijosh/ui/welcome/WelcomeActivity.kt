@@ -30,9 +30,15 @@ class WelcomeActivity : BaseActivity(), WelcomeView {
         }
     }
 
-    override fun startLoading() {}
+    override fun startLoading() {
+        if (checkIfActivityFinished()) return
+        showLoadingProgress()
+    }
 
-    override fun stopLoading() {}
+    override fun stopLoading() {
+        if (checkIfActivityFinished()) return
+        dismissLoading()
+    }
 
     override fun showError(message: String) {}
 

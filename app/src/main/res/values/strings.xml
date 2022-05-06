@@ -81,5 +81,7 @@
     <string name="tooltip_shop">You can gain points by completting challenges!</string>
     <string name="notif_sum">Enable to remind you to drink.</string>
     <string name="completed">COMPLETED</string>
+    <string name="select_your_progress_bar_theme">Select Your Progress Bar Theme</string>
+    <string name="apply">Apply</string>
 
 </resources>

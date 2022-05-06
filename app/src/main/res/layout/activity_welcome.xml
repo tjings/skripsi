@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.welcome.WelcomeActivity"
-    android:background="@color/col_def">
+    android:background="@color/col_bg">
 
     <ImageView
         android:contentDescription="@string/content_desc"
         android:id="@+id/ivWelcomeLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        app:srcCompat="@mipmap/ic_logo_foreground" />
 
     <TextView
         android:id="@+id/tvWelcome"

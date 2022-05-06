@@ -30,14 +30,20 @@ class MedalsFragment : BaseFragment(), MedalsView {
     override fun onGetMedalSuccess(medalDeets: UserMedal) {
         if (checkIfFragmentNotAttachToActivity()) return
         medalDetails.add(medalDeets)
-        Log.d("medalname", medalDeets.name.toString())
-        Log.d("medaldeets", medalDeets.desc.toString())
+        Log.d("medalname", medalDeets.name)
+        Log.d("medaldeets", medalDeets.desc)
         initAdapter()
     }
 
-    override fun startLoading() {}
+    override fun startLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
+        showLoadingProgressOnly()
+    }
 
-    override fun stopLoading() {}
+    override fun stopLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
+        dismissLoadingProgress()
+    }
 
     override fun showError(message: String) { }
 

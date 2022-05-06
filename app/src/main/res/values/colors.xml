@@ -4,7 +4,41 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey">#6E6E6E</color>
     <color name="light_grey">#C1DAD8D8</color>
+    
+    //fire
     <color name="red">#FF0000</color>
+    <color name="orange">#ff9a00</color>
+    <color name="yellow">#ffe808</color>
+
+    //earth
+    <color name="cocobolo">#784848</color>
+    <color name="green_gloss">#009060</color>
+    <color name="myrtle">#184818</color>
+
+    //thunder
+    <color name="purple">#422f4d</color>
+    <color name="violet">#b789c1</color>
+    <color name="pink">#f9daef</color>
+    
+    //metallic
+    <color name="metallic1">#66849E</color>
+    <color name="metallic2">#456178</color>
+    <color name="metallic3">#2C3743</color>
+
+    //steampunk
+    <color name="maroon">#6d2316</color>
+    <color name="brownish1">#ab7633</color>
+    <color name="brownish2">#85432d</color>
+
+    //woody
+    <color name="wood1">#4a372d</color>
+    <color name="wood2">#35231d</color>
+    <color name="wood3">#6b4f42</color>
+
+    //beach
+    <color name="starfish">#b95c17</color>
+    <color name="pinkish">#d2b8af</color>
+    <color name="sand">#c5926a</color>
 
     <color name="transparent">#00000000</color>
     <color name="col_def">#0082C8</color>

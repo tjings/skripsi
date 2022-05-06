@@ -19,6 +19,7 @@ class RegisterPresenter (view: RegisterView) : BasePresenter<RegisterView>() {
                     view?.stopLoading()
                     view?.onRegisterSuccess()
                 } else {
+                    view?.stopLoading()
                     view?.showError(task.exception?.message.toString())
                 }
             }

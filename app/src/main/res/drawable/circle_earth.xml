@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <!--Here ring shape is created. The important attribute
+         used here is, android:useLevel="false". Attribute
+         with the useLevel=true makes the ring disabled, so it must
+         be false for the ring to appear with color code "#DDD"-->
+        <shape
+            android:shape="ring"
+            android:thicknessRatio="16"
+            android:useLevel="false">
+            <gradient
+                android:endColor="@color/myrtle"
+                android:centerColor="@color/cocobolo"
+                android:startColor="@color/green_gloss"
+                android:type="linear"
+                android:angle="225"/>
+        </shape>
+    </item>
+</layer-list>

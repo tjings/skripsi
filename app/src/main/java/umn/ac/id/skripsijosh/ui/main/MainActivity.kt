@@ -132,10 +132,12 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     }
 
     override fun startLoading() {
+        if (checkIfActivityFinished()) return
         showLoadingProgress()
     }
 
     override fun stopLoading() {
+        if (checkIfActivityFinished()) return
         dismissLoading()
     }
 

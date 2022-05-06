@@ -77,7 +77,7 @@ class ShopActivity : BaseActivity(), ShopView {
     }
 
     private fun initAdapter() {
-        val adapter = ShopAdapter(itemList)
+        val adapter = ShopAdapter(itemList, this)
         binding.rvShop.adapter = adapter
         binding.rvShop.layoutManager = GridLayoutManager(this, 2)
 
@@ -109,10 +109,12 @@ class ShopActivity : BaseActivity(), ShopView {
     }
 
     override fun startLoading() {
+        if (checkIfActivityFinished()) return
         showLoadingProgress()
     }
 
     override fun stopLoading() {
+        if (checkIfActivityFinished()) return
         dismissLoading()
     }
 

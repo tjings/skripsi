@@ -17,7 +17,6 @@ class ShopPresenter (view: ShopView) : BasePresenter <ShopView>() {
         db.collection("shopItem")
             .get()
             .addOnSuccessListener {
-                view?.stopLoading()
                 val result = it.toObjects(ShopItem::class.java)
                 view?.onGetItemSuccess(result)
             }
@@ -29,13 +28,14 @@ class ShopPresenter (view: ShopView) : BasePresenter <ShopView>() {
             .document(auth.uid!!)
             .get()
             .addOnSuccessListener {
+                view?.stopLoading()
                 val result = it.toObject(UserBalance::class.java)!!
                 view?.onGetBalanceSuccess(result)
             }
             .addOnFailureListener { }
     }
 
-    fun purchaseItem(itemId: Int, balanceLeft: Int) {
+    fun purchaseItem(itemId: String, balanceLeft: Int) {
         view?.startLoading()
         db.collection("userBalance")
             .document(auth.uid!!)
@@ -45,11 +45,12 @@ class ShopPresenter (view: ShopView) : BasePresenter <ShopView>() {
                     .document(auth.uid!!)
                     .update("itemHave", FieldValue.arrayUnion(itemId))
                     .addOnSuccessListener {
+                        view?.stopLoading()
                         getUserBalance()
                         getItemList()
                     }
             }
-            .addOnFailureListener { }
+            .addOnFailureListener {}
     }
 
 }

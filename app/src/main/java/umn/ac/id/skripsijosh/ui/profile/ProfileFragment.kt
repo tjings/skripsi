@@ -200,10 +200,12 @@ class ProfileFragment : BaseFragment(), ProfileView {
     }
 
     override fun startLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
         showLoadingProgressOnly()
     }
 
     override fun stopLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
         dismissLoadingProgress()
     }
 

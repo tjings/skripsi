@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!--Adding our first item-->
     <item>
         <!--Here ring shape is created. The important attribute
          used here is, android:useLevel="false". Attribute
@@ -27,10 +26,10 @@
                 android:thicknessRatio="16"
                 android:useLevel="true">
                 <gradient
-                    android:endColor="@color/col_accent"
+                    android:endColor="@color/col_bg"
+                    android:centerColor="@color/col_btn"
                     android:startColor="@color/col_def"
                     android:type="linear" />
-
             </shape>
         </rotate>
     </item>

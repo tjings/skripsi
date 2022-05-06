@@ -51,10 +51,12 @@ class ChallengeActivity : BaseActivity(), ChallengeAdapter.ChallengeListener, Ch
     }
 
     override fun startLoading() {
+        if (checkIfActivityFinished()) return
         showLoadingProgress()
     }
 
     override fun stopLoading() {
+        if (checkIfActivityFinished()) return
         dismissLoading()
     }
 

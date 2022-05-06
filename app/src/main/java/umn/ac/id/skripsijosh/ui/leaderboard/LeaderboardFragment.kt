@@ -34,9 +34,14 @@ class ShopFragment : BaseFragment(), LeaderboardView {
         initAdapter()
     }
 
-    override fun startLoading() {}
+    override fun startLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
+        showLoadingProgressOnly()
+    }
 
-    override fun stopLoading() {}
+    override fun stopLoading() {
+        if (checkIfFragmentNotAttachToActivity()) return
+        dismissLoadingProgress()}
 
     override fun showError(message: String) {}
 
