@@ -146,6 +146,17 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
     override fun onChangeThemeSuccess(themeId: String) {
         val img: Int = resources.getIdentifier(themeId + "_theme", "drawable", context?.packageName)
         binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
+        when {
+            progress <= 0 -> {
+                binding.progressBar.progress = 0
+            }
+            progress < 100 ->{
+                binding.progressBar.progress = progress
+            }
+            else -> {
+                binding.progressBar.progress = 100
+            }
+        }
     }
 
     private fun setStreak() {
