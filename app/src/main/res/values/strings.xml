@@ -37,7 +37,8 @@
     <string name="how_much_did_you_just_drink">How much did you just drink? (mL)</string>
     <string name="are_you_sure">You sure you want to buy %s?</string>
     <string name="purchase_failed">Failed to purchase, insufficient points.</string>
-    <string name="drank_water">Hi, %s, You drank %s mL Today</string>
+    <string name="purchase_success">Purchase success.</string>
+    <string name="drank_water">Hi %s, You drank %s mL today</string>
     <string name="add_your_progress">Add your progress</string>
     <string name="title_activity_leaderboard">LeaderboardActivity</string>
     <string name="welcome_to_drinkuy_please_login_to_continue">Welcome to DrinKuy, please login to continue!</string>
@@ -83,5 +84,6 @@
     <string name="completed">COMPLETED</string>
     <string name="select_your_progress_bar_theme">Select Your Progress Bar Theme</string>
     <string name="apply">Apply</string>
+    <string name="owned">Owned</string>
 
 </resources>

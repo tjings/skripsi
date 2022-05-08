@@ -48,9 +48,22 @@ class ShopPresenter (view: ShopView) : BasePresenter <ShopView>() {
                         view?.stopLoading()
                         getUserBalance()
                         getItemList()
+                        view?.showSuccess()
                     }
             }
             .addOnFailureListener {}
+    }
+
+    fun getInventoryList() {
+        view?.startLoading()
+        db.collection("userInventory")
+            .document(auth.uid!!)
+            .get()
+            .addOnSuccessListener {
+                view?.stopLoading()
+                val result = it.toObject(UserInventory::class.java)
+                view?.onGetInventorySuccess(result!!)
+            }
     }
 
 }

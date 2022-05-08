@@ -110,7 +110,23 @@ class DialogUtil(private val activity: BaseActivity) {
         activity.mDialog?.show()
     }
 
+    fun showSuccess() {
+        dismissStaticMaterialDialog()
+        if (checkIfActivityFinished()) return
+        activity.mDialog = MaterialDialog(activity)
+            .customView(R.layout.dialog_failed, scrollable = false)
+            .cornerRadius(activity.resources.getDimensionPixelSize(com.intuit.sdp.R.dimen._7sdp).toFloat())
 
+        val customView = activity.mDialog?.getCustomView()
+        val tvConfirmation = customView?.findViewById<TextView>(R.id.tvDialogMssg)
+        val btnClose = customView?.findViewById<AppCompatButton>(R.id.btnClose)
+
+        tvConfirmation!!.text = activity.getString(R.string.purchase_success)
+        btnClose?.setOnClickListener {
+            activity.mDialog?.dismiss()
+        }
+        activity.mDialog?.show()
+    }
 
     interface DialogActionCallback {
         fun onPositive(waterAmt: Int?)

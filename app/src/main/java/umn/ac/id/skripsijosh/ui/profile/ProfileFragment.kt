@@ -186,11 +186,13 @@ class ProfileFragment : BaseFragment(), ProfileView {
         editor.putString("display_pic", userData.displayPic)
         editor.putString("is_biodata_done", userData.isBiodataDone.toString())
         editor.apply()
-        Picasso.get()
-            .load(userData.displayPic)
-            .resize(400, 400)
-            .centerCrop()
-            .into(binding.ivProfile)
+        if(!Util.isNotNull(userData.displayPic)) {
+            Picasso.get()
+                .load(userData.displayPic)
+                .resize(400, 400)
+                .centerCrop()
+                .into(binding.ivProfile)
+        }
         binding.tvName.text = userData.displayName
         binding.tvEmail.text = auth.currentUser?.email
         binding.etName.setText(userData.displayName)

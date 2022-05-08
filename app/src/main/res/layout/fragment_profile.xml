@@ -80,7 +80,7 @@
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:contentDescription="@string/content_desc"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/ic_account_circle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="@dimen/_12sdp"
     tools:context=".ui.register.biodata.BiodataActivity"
-    android:background="@color/col_reg">
+    android:background="@color/col_bg">
 
     <TextView
         android:id="@+id/tvRegisterTitle"
@@ -46,7 +46,7 @@
             android:autofillHints="Name"
             android:id="@+id/etName"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_4sdp"
             android:background="@color/white"
             android:hint="@string/enter_name"
@@ -90,7 +90,7 @@
     <Spinner
         android:id="@+id/spinnerGender"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@drawable/spinner_bg"
         android:letterSpacing="0.08"
@@ -129,7 +129,7 @@
         android:autofillHints="Birthday"
         android:id="@+id/etBday"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@color/white"
         android:hint="@string/select_birthday"
@@ -174,11 +174,11 @@
         app:layout_constraintTop_toBottomOf="@+id/tvErrorBday" />
 
     <EditText
-        android:autofillHints="Height"
         android:id="@+id/etHeight"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="4dp"
+        android:autofillHints="Height"
         android:background="@color/white"
         android:hint="@string/input_your_height"
         android:inputType="number"
@@ -190,6 +190,7 @@
         android:paddingRight="10dp"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -231,7 +232,7 @@
         android:autofillHints="Weight"
         android:id="@+id/etWeight"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@color/white"
         android:hint="@string/input_your_weight"
@@ -275,6 +276,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/save"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:backgroundTint="@color/col_btn"
         app:layout_constraintEnd_toEndOf="parent"

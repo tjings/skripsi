@@ -32,16 +32,16 @@
             android:id="@+id/etWaterAmt"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:background="@color/white"
             android:inputType="number"
             tools:ignore="LabelFor" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_28sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@color/white"
             android:text="@string/submit"
             android:textAllCaps="false"
@@ -49,7 +49,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnClose"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_28sdp"
             android:background="@color/white"
             android:text="@string/close"

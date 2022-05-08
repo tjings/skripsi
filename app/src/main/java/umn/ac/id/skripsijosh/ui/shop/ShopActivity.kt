@@ -1,10 +1,10 @@
 package umn.ac.id.skripsijosh.ui.shop
 
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
 import umn.ac.id.skripsijosh.R
@@ -12,13 +12,14 @@ import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityShopBinding
 import umn.ac.id.skripsijosh.pojo.ShopItem
 import umn.ac.id.skripsijosh.pojo.UserBalance
+import umn.ac.id.skripsijosh.pojo.UserInventory
 import umn.ac.id.skripsijosh.utils.DialogUtil
 import umn.ac.id.skripsijosh.utils.Util
-
 
 class ShopActivity : BaseActivity(), ShopView {
     private lateinit var binding: ActivityShopBinding
     private lateinit var presenter: ShopPresenter
+    private var inventory: MutableList<String> = arrayListOf()
     private var itemList: MutableList<ShopItem> = arrayListOf()
     private var userBalance = 0
 
@@ -30,6 +31,7 @@ class ShopActivity : BaseActivity(), ShopView {
         presenter = ShopPresenter(this)
         presenter.getItemList()
         presenter.getUserBalance()
+        presenter.getInventoryList()
 
         binding.include2.toolbar.setNavigationIcon(R.drawable.ic_back)
         binding.include2.toolbar.setNavigationOnClickListener {
@@ -52,6 +54,7 @@ class ShopActivity : BaseActivity(), ShopView {
         initAdapter()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onGetBalanceSuccess(result: UserBalance) {
         userBalance = result.balance
         binding.tvBalance.text = String.format("$userBalance P")
@@ -76,8 +79,20 @@ class ShopActivity : BaseActivity(), ShopView {
             .showAlignBottom(binding.tvBalance)
     }
 
+    override fun showSuccess() {
+        DialogUtil(this).showSuccess()
+    }
+
+    override fun onGetInventorySuccess(result: UserInventory) {
+        if (Util.isNotNull(result.itemHave)) {
+            inventory.addAll(result.itemHave!!)
+        } else {
+            inventory.add("circle")
+        }
+    }
+
     private fun initAdapter() {
-        val adapter = ShopAdapter(itemList, this)
+        val adapter = ShopAdapter(itemList, inventory, this)
         binding.rvShop.adapter = adapter
         binding.rvShop.layoutManager = GridLayoutManager(this, 2)
 

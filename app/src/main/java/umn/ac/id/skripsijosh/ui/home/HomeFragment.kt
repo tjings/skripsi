@@ -1,13 +1,14 @@
 package umn.ac.id.skripsijosh.ui.home
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
@@ -64,6 +65,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(
             view,
@@ -74,6 +76,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         init()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onLoadDataSuccess(results: MutableList<UserDailyWater>, streak: UserStreak) {
         if (checkIfFragmentNotAttachToActivity()) return
         mWaterProgress = 0
@@ -146,17 +149,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
     override fun onChangeThemeSuccess(themeId: String) {
         val img: Int = resources.getIdentifier(themeId + "_theme", "drawable", context?.packageName)
         binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
-        when {
-            progress <= 0 -> {
-                binding.progressBar.progress = 0
-            }
-            progress < 100 ->{
-                binding.progressBar.progress = progress
-            }
-            else -> {
-                binding.progressBar.progress = 100
-            }
-        }
+        activity?.recreate()
     }
 
     private fun setStreak() {
@@ -213,6 +206,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun init() {
         val img: Int = resources.getIdentifier(selectedTheme + "_theme", "drawable", context?.packageName)
         binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
@@ -238,19 +232,24 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         binding.srlHome.setOnRefreshListener {
             presenter.getWaterData(today = date.toString())
         }
+
         binding.btnTooltip.setOnClickListener {
             balloon.showAlignBottom(binding.btnTooltip)
         }
+
         binding.btnChangeProgressBar.setOnClickListener {
             val fragment = SelectThemeFragment.getInstance(callback = this@HomeFragment)
             fragment.show(childFragmentManager, SelectThemeFragment.TAG)
         }
+
         binding.rlToChallenge.setOnClickListener {
             startActivity(Intent(context, ChallengeActivity::class.java))
         }
+
         binding.rltoShop.setOnClickListener {
             startActivity(Intent(context, ShopActivity::class.java))
         }
+
         binding.tvDayAndDate.text = DateFormat.format("EEEE, dd MMMM yyyy" , Date()) as String
         binding.fabAdd.setOnClickListener {
             DialogUtil(requireActivity()).showDialog(

@@ -7,19 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.common.reflect.Reflection.getPackageName
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.pojo.ShopItem
+import umn.ac.id.skripsijosh.pojo.UserInventory
 
 class ShopAdapter (private val dataSet:  MutableList<ShopItem>,
-                    private val activity: Activity): RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
+                   private val inventory: MutableList<String>,
+                   private val activity: Activity): RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
 
     var onItemClick: ((ShopItem) -> Unit)? = null
 
     inner class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+        val clShopItem: ConstraintLayout = itemView.findViewById(R.id.clShopItem)
         val tvItemName: TextView = itemView.findViewById(R.id.tvItemName)
         val tvItemDesc: TextView = itemView.findViewById(R.id.tvItemDesc)
+        val tvEarned: TextView = itemView.findViewById(R.id.tvEarned)
         val ivItemPic: ImageView = itemView.findViewById(R.id.ivItemPic)
         val tvItemPrice: TextView = itemView.findViewById(R.id.tvItemPrice)
 
@@ -37,6 +42,13 @@ class ShopAdapter (private val dataSet:  MutableList<ShopItem>,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        inventory.forEach {
+            if(it == dataSet[position].itemId) {
+                holder.tvEarned.visibility = View.VISIBLE
+                holder.itemView.isEnabled = false
+                holder.clShopItem.visibility = View.VISIBLE
+            }
+        }
         val img: Int = activity.resources.getIdentifier(dataSet[position].itemId, "drawable", activity.packageName)
         holder.ivItemPic.setImageResource(img)
         holder.tvItemName.text = dataSet[position].itemName

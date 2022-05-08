@@ -8,4 +8,6 @@ import umn.ac.id.skripsijosh.pojo.UserInventory
 interface ShopView : BaseView {
     fun onGetItemSuccess(result: MutableList<ShopItem>)
     fun onGetBalanceSuccess(result: UserBalance)
+    fun showSuccess()
+    fun onGetInventorySuccess(result: UserInventory)
 }
