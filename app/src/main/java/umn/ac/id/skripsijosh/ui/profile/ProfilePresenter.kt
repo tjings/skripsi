@@ -15,11 +15,9 @@ class ProfilePresenter (view: ProfileView) : BasePresenter<ProfileView>() {
             .document(auth.uid!!)
             .get()
             .addOnSuccessListener {
-               if(it.exists()) {
-                   view?.stopLoading()
-                   val result: UserData = it.toObject(UserData::class.java)!!
-                   view?.onSuccessLoadProfile(result)
-               }
+                view?.stopLoading()
+                val result: UserData = it.toObject(UserData::class.java)!!
+                view?.onSuccessLoadProfile(result)
             }
             .addOnFailureListener {
                 view?.showError("err")

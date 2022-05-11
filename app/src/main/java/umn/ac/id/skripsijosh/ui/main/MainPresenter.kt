@@ -18,18 +18,8 @@ class MainPresenter (view: MainView) : BasePresenter<MainView>() {
             .get()
             .addOnSuccessListener {
                 view?.stopLoading()
-                if (it.data != null) {
-                    val userData = it.toObject(UserData::class.java)
-                    view?.onGetDataUserSucces(userData!!)
-                } else {
-                    val userData = UserData()
-                    db.collection("userData")
-                        .document(auth.uid!!)
-                        .set(userData)
-                        .addOnSuccessListener {
-                            checkBiodataDone()
-                        }
-                }
+                val userData = it.toObject(UserData::class.java)
+                view?.onGetDataUserSucces(userData!!)
             }
     }
 }

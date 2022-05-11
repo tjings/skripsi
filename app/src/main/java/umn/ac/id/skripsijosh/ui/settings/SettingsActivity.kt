@@ -6,7 +6,6 @@ import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivitySettingsBinding
 
-
 class SettingsActivity : BaseActivity() {
 
     private lateinit var binding : ActivitySettingsBinding

@@ -14,7 +14,7 @@ import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.pojo.UserStreak
 import umn.ac.id.skripsijosh.utils.Util
 
-class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, private val context: Context?) : RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
+class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, private val context: Context) : RecyclerView.Adapter<LeaderboardAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvLeaderboardName: TextView = itemView.findViewById(R.id.tvUserName)
@@ -23,7 +23,7 @@ class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, p
         val ivLeaderboard: ImageView = itemView.findViewById(R.id.ivLeaderboard)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeaderboardAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.leaderboard_item, parent, false)
 
@@ -41,7 +41,7 @@ class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, p
         }
         val ranking = position + 1
         holder.tvLeaderboardName.text = leaderboardData[position].userName
-        holder.tvHighestStreak.text = String.format(context!!.getString(R.string.highest_streak_leaderboard), leaderboardData[position].highestStreak)
+        holder.tvHighestStreak.text = String.format(context.getString(R.string.highest_streak_leaderboard), leaderboardData[position].highestStreak)
         holder.tvLeaderboardRanking.text = ranking.toString()
     }
 

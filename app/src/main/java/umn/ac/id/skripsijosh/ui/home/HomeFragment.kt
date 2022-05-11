@@ -100,6 +100,9 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         }
         presenter.loadUserData()
         progress = (mWaterProgress * 100) / 2000
+        val editor = sharedPreferences.edit()
+        editor.putString("progress", progress.toString())
+        editor.apply()
         when {
             progress <= 0 -> {
                 binding.progressBar.progress = 0

@@ -48,7 +48,7 @@ class ShopFragment : BaseFragment(), LeaderboardView {
     override fun showEmpty() {}
 
     private fun initAdapter() {
-        binding.rvLeaderboard.adapter = LeaderboardAdapter(leaderboardData , context)
+        binding.rvLeaderboard.adapter = LeaderboardAdapter(leaderboardData , requireContext())
         binding.rvLeaderboard.layoutManager = LinearLayoutManager(context)
     }
 }

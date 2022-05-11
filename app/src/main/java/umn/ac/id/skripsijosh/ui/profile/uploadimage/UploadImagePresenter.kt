@@ -25,6 +25,9 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
                 view?.stopLoading()
                 view?.showError(it.toString())
             }
+        db.collection("userStreak")
+            .document(auth.uid!!)
+            .update("displayPic", newUserData.displayPic)
     }
 
     fun uploadImage(filePath: Uri, userData: UserData) {
@@ -34,14 +37,14 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
         val ref = storageReference.child(auth.uid.toString())
         uploadTask = ref.putFile(filePath)
 
-        val urlTask = uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot, Task<Uri>> { task ->
+        val urlTask = uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
                     throw it
                 }
             }
             ref.downloadUrl
-        }).addOnCompleteListener { task ->
+        }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val downloadUri = task.result
                 val newUserData = UserData(

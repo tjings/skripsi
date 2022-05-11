@@ -46,22 +46,9 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
                     .document(auth.uid!!)
                     .get()
                     .addOnSuccessListener {
-                        if(it.data != null) {
-                            view?.stopLoading()
-                            val streak = it.toObject(UserStreak::class.java)
-                            view?.onLoadDataSuccess(results, streak!!)
-                        } else {
-                            val initStreak = UserStreak()
-                            db.collection("userStreak")
-                                .document(auth.uid!!)
-                                .set(initStreak)
-                                .addOnSuccessListener {
-                                    view?.stopLoading()
-                                }
-                                .addOnFailureListener {
-                                    view?.showError(it.message.toString())
-                                }
-                        }
+                        view?.stopLoading()
+                        val streak = it.toObject(UserStreak::class.java)
+                        view?.onLoadDataSuccess(results, streak!!)
                     }
                     .addOnFailureListener {
                         view?.stopLoading()

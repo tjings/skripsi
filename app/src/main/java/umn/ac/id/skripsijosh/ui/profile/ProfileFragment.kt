@@ -1,18 +1,28 @@
 package umn.ac.id.skripsijosh.ui.profile
 
+import android.app.Activity
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import umn.ac.id.skripsijosh.base.BaseFragment
 import umn.ac.id.skripsijosh.databinding.FragmentProfileBinding
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
+import org.greenrobot.eventbus.EventBus
+import umn.ac.id.skripsijosh.R
+import umn.ac.id.skripsijosh.pojo.CheckNotification
+import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.profile.uploadimage.UploadImageActivity
+import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
 import umn.ac.id.skripsijosh.ui.settings.SettingsActivity
 import umn.ac.id.skripsijosh.utils.Util
 
@@ -25,6 +35,12 @@ class ProfileFragment : BaseFragment(), ProfileView {
     private var name = ""
     private var height = ""
     private var weight = ""
+
+    private val settingStartForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
+        if (result?.resultCode == Activity.RESULT_OK || result?.resultCode == Activity.RESULT_CANCELED) {
+            EventBus.getDefault().postSticky(CheckNotification())
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,7 +98,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         }
 
         binding.notifFab.setOnClickListener {
-            startActivity(Intent(context, SettingsActivity::class.java))
+            settingStartForResult.launch(Intent(context, SettingsActivity::class.java))
         }
 
         binding.etName.addTextChangedListener(object : TextWatcher {
@@ -136,6 +152,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
         binding.logoutFab.setOnClickListener {
             auth.signOut()
+            sharedPreferences.edit().clear().apply()
             requireActivity().finish()
             startActivity(Intent(context, WelcomeActivity::class.java))
         }
@@ -186,7 +203,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         editor.putString("display_pic", userData.displayPic)
         editor.putString("is_biodata_done", userData.isBiodataDone.toString())
         editor.apply()
-        if(!Util.isNotNull(userData.displayPic)) {
+        if(Util.isNotNull(userData.displayPic)) {
             Picasso.get()
                 .load(userData.displayPic)
                 .resize(400, 400)
