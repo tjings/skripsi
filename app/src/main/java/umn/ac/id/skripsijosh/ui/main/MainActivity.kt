@@ -1,10 +1,10 @@
 package umn.ac.id.skripsijosh.ui.main
 
 import android.app.*
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.format.DateFormat
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -39,6 +39,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     private lateinit var shopTabContainer : View
     private lateinit var profileTabContainer : View
     private var notificationManager: NotificationManager? = null
+    private var alarmManager: AlarmManager? = null
     private var isBiodataDone = false
     private var hourOfDay: Int = 0
     private var minutes: Int = 0
@@ -46,30 +47,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     private val timer = Timer()
     private val task: TimerTask = object : TimerTask() {
         override fun run() {
-            val progress = sharedPreferences.getString("progress", "0")?.toInt()!!
-            hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-            minutes = Calendar.getInstance().get(Calendar.MINUTE)
-            if(progress < 50) {
-                val wakeHour = sharedPreferences.getString("wake_hour", "0")!!.toInt() + 4
-                if (hourOfDay > wakeHour) {
-                    notifScheduler(
-                        hour = hourOfDay,
-                        mins = minutes + 5,
-                        title = "Its time to drink",
-                        message = "Looks like your body still far from today's share of water"
-                    )
-                }
-            }
-            if(progress in 50..99) {
-                if (hourOfDay > 4) {
-                    notifScheduler(
-                        hour = hourOfDay,
-                        mins = minutes + 5,
-                        title = "Its time to drink",
-                        message = "Don't forget to drink water, just some steps ahead!"
-                    )
-                }
-            }
+            checkNotif(fromTimer = true)
         }
     }
 
@@ -82,8 +60,8 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         if(isBiodataDone) {
             init()
         }
-        timer.schedule(task, 0L, 1000 * 60 * 30)
         checkNotif()
+        timer.schedule(task, 0L, 1000 * 60)
     }
 
     override fun onStart() {
@@ -191,6 +169,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         binding.bottomNavigation.setOnItemSelectedListener(this)
     }
 
+
     private fun createNotificationChannel() {
         val name = "Notif Channel"
         val desc = "Notif desc"
@@ -199,62 +178,119 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         channel.description = desc
         notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         notificationManager!!.createNotificationChannel(channel)
+    }
 
+    private fun setAlarms(fromTimer: Boolean = false) {
         val wakeHour = sharedPreferences.getString("wake_hour", "").toString()
         val wakeMins = sharedPreferences.getString("wake_minute", "").toString()
         val sleepHour = sharedPreferences.getString("sleep_hour", "").toString()
         val sleepMins = sharedPreferences.getString("sleep_minute", "").toString()
+        val intent = Intent(this, Notification::class.java)
 
-        if(Util.isNotNull(wakeHour) && Util.isNotNull(wakeMins)) {
-            notifScheduler(
-                hour = wakeHour.toInt(),
-                mins = wakeMins.toInt(),
-                title = "Its time to drink",
-                message = "Good morning, start your day with some two cup of water!"
+        if (Util.isNotNull(wakeHour) && Util.isNotNull(wakeMins)) {
+            val pendingIntent = PendingIntent.getBroadcast(
+                this,
+                11,
+                intent,
+                FLAG_UPDATE_CURRENT
+            )
+            intent.putExtra(titleExtra, "Its time to drink")
+            intent.putExtra(
+                messageExtra,
+                "Good morning, start your day with some two cup of water!"
+            )
+            val time = setTime(hourOfDay = wakeHour.toInt(), minutes = wakeMins.toInt())
+            alarmManager!!.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                time,
+                pendingIntent
             )
         }
-        if(Util.isNotNull(sleepHour) && Util.isNotNull(sleepMins)) {
-            notifScheduler(
-                hour = sleepHour.toInt(),
-                mins = sleepMins.toInt(),
-                title = "Its time to drink",
-                message = "Good night, drink some water to keep you hydrated throughout your sleep!"
+        if (Util.isNotNull(sleepHour) && Util.isNotNull(sleepMins)) {
+            val pendingIntent = PendingIntent.getBroadcast(
+                this,
+                12,
+                intent,
+                FLAG_UPDATE_CURRENT
+            )
+            intent.putExtra(titleExtra, "Its time to drink")
+            intent.putExtra(
+                messageExtra,
+                "Good night, drink some water to keep you hydrated throughout your sleep!"
+            )
+            val time = setTime(hourOfDay = sleepHour.toInt() - 1, minutes = sleepMins.toInt())
+            alarmManager!!.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                time,
+                pendingIntent
             )
         }
     }
 
-    private fun notifScheduler(hour: Int, mins: Int, title: String, message: String) {
-        val intent = Intent(applicationContext, Notification::class.java)
-        val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        val pendingIntent = PendingIntent.getBroadcast(
-            applicationContext,
-            notificationID,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent. FLAG_UPDATE_CURRENT
-        )
-        intent.putExtra(titleExtra, title)
-        intent.putExtra(messageExtra, message)
-        val time = setTime(hourOfDay = hour, minutes = mins)
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            time,
-            pendingIntent
-        )
+    private fun setReminder() {
+        val intent = Intent(this, Notification::class.java)
+        val sleepHour = sharedPreferences.getString("sleep_hour", "0")?.toInt()!!
+        val progress = sharedPreferences.getString("progress", "0")?.toInt()!!
+        hourOfDay = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        minutes = Calendar.getInstance().get(Calendar.MINUTE)
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        if(progress < 50) {
+            if (hourOfDay in 11..15) {
+                val pendingIntent = PendingIntent.getBroadcast(
+                    this,
+                    13,
+                    intent,
+                    FLAG_UPDATE_CURRENT
+                )
+                intent.putExtra(titleExtra, "Its time to drink")
+                intent.putExtra(messageExtra, "Looks like your body still far from today's share of water")
+                val time = setTime(hourOfDay = hourOfDay, minutes = minutes + 5)
+                alarmManager!!.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    time,
+                    pendingIntent
+                )
+            }
+        }
+        if(progress in 50..99) {
+            if (hourOfDay in 16..sleepHour) {
+                val pendingIntent = PendingIntent.getBroadcast(
+                    this,
+                    13,
+                    intent,
+                    FLAG_UPDATE_CURRENT
+                )
+                intent.putExtra(titleExtra, "Its time to drink")
+                intent.putExtra(messageExtra, "Don't forget to drink water, just some steps ahead!")
+                val time = setTime(hourOfDay = hourOfDay, minutes = minutes + 5)
+                alarmManager!!.setExactAndAllowWhileIdle(
+                    AlarmManager.RTC_WAKEUP,
+                    time,
+                    pendingIntent
+                )
+            }
+        }
     }
 
     private fun setTime(hourOfDay: Int = 12, minutes: Int = 30): Long {
         val current = LocalDateTime.now()
         val calendar = Calendar.getInstance()
         calendar.set(current.year, current.monthValue-1, current.dayOfMonth, hourOfDay, minutes)
+        Log.d("alarmszz", calendar.timeInMillis.toString())
         return calendar.timeInMillis
     }
 
-    private fun checkNotif() {
+    private fun checkNotif(fromTimer: Boolean = false) {
+        if(fromTimer) {
+            setReminder()
+        }
         if(sharedPreferences.getBoolean("enable_notif", true)) {
             createNotificationChannel()
+            setAlarms()
         } else {
             if(notificationManager != null) {
                 notificationManager!!.cancelAll()
+                timer.cancel()
             }
         }
     }
