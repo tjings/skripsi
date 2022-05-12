@@ -180,12 +180,13 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         notificationManager!!.createNotificationChannel(channel)
     }
 
-    private fun setAlarms(fromTimer: Boolean = false) {
+    private fun setAlarms() {
         val wakeHour = sharedPreferences.getString("wake_hour", "").toString()
         val wakeMins = sharedPreferences.getString("wake_minute", "").toString()
         val sleepHour = sharedPreferences.getString("sleep_hour", "").toString()
         val sleepMins = sharedPreferences.getString("sleep_minute", "").toString()
         val intent = Intent(this, Notification::class.java)
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         if (Util.isNotNull(wakeHour) && Util.isNotNull(wakeMins)) {
             val pendingIntent = PendingIntent.getBroadcast(
