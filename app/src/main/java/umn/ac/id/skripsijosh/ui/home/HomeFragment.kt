@@ -209,8 +209,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun init() {
+fun init() {
         val img: Int = resources.getIdentifier(selectedTheme + "_theme", "drawable", context?.packageName)
         binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
 
