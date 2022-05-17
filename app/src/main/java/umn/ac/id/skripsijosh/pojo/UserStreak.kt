@@ -5,5 +5,6 @@ class UserStreak (
     var displayPic: String = "",
     var streak: Int = 0,
     var highestStreak: Int? = 0,
+    var totalWater: Int? = 0,
     var latestDate: String = ""
 )

@@ -42,6 +42,8 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
     private var mStreak = 0
     private var mTotalStreak = 0
     private var progress: Int = 0
+    private var level: Int = 0
+    private var totalExp: Int = 0
     private var isStreakBroken = false
     private var isCompleteDaily = false
     private var isTodayStreaked = false
@@ -65,7 +67,6 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(
             view,
@@ -76,9 +77,9 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         init()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onLoadDataSuccess(results: MutableList<UserDailyWater>, streak: UserStreak) {
         if (checkIfFragmentNotAttachToActivity()) return
+        totalExp = streak.totalWater!!
         mWaterProgress = 0
         results.forEach {
             mWaterProgress += it.dailyWater
@@ -126,6 +127,10 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         userName = userData.displayName.toString()
         displayPic = userData.displayPic.toString()
         binding.tvProgressML.text = String.format(getString(R.string.drank_water), userName, mWaterProgress)
+    }
+
+    override fun onAddExpSuccess() {
+        presenter.loadUserData()
     }
 
     override fun startLoading() {
@@ -209,7 +214,7 @@ class HomeFragment : BaseFragment(), HomeView, SelectThemeFragment.SelectThemeLi
         }
     }
 
-fun init() {
+    fun init() {
         val img: Int = resources.getIdentifier(selectedTheme + "_theme", "drawable", context?.packageName)
         binding.progressBar.progressDrawable = getDrawable(requireContext(), img)
 
@@ -258,11 +263,24 @@ fun init() {
                 callback = object : DialogUtil.DialogActionCallback{
                     override fun onPositive(waterAmt: Int?) {
                         presenter.addWater(today = date.toString(), time = time, waterAmt = waterAmt!!)
+                        presenter.addPoints(pointGot = waterAmt)
+                        checkLevel()
                     }
                     override fun onNegative() {
                     }
                 }
             )
         }
+    }
+
+    fun checkLevel() : Int {
+        val expNeeded = presenter.checkExp(level)
+        if(totalExp >= expNeeded) {
+            level = level++
+            presenter.levelUp()
+            DialogUtil(requireActivity()).levelUp()
+            return level
+        }
+        return level
     }
 }

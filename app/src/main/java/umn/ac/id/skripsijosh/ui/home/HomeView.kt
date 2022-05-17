@@ -9,4 +9,5 @@ interface HomeView : BaseView {
     fun onAddWaterSuccess()
     fun onLoadDataSuccess(results: MutableList<UserDailyWater>, streak: UserStreak)
     fun onSuccessLoadProfile(userData: UserData)
+    fun onAddExpSuccess()
 }

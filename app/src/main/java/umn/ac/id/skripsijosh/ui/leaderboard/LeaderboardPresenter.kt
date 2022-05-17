@@ -14,6 +14,7 @@ class LeaderboardPresenter (view: LeaderboardView) : BasePresenter<LeaderboardVi
         view?.startLoading()
         db.collection("userStreak")
             .orderBy("highestStreak", Query.Direction.DESCENDING)
+            .orderBy("totalWater", Query.Direction.DESCENDING)
             .limit(10)
             .get()
             .addOnSuccessListener {

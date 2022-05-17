@@ -20,6 +20,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
         view?.startLoading()
         val user = UserData(
             displayName = displayName,
+            level = 0,
             gender = gender,
             bday = bday,
             weight = weight,
@@ -34,13 +35,7 @@ class BiodataPresenter (view: BiodataView) : BasePresenter <BiodataView>() {
             .addOnFailureListener {
                 Log.w("eror", "Error", it)
             }
-        val water = UserWater()
-        db.collection("userWater")
-            .document(auth.uid!!)
-            .set(water)
-            .addOnSuccessListener {}
-            .addOnFailureListener {}
-        val streak = UserStreak(userName = displayName)
+        val streak = UserStreak()
         db.collection("userStreak")
             .document(auth.uid!!)
             .set(streak)

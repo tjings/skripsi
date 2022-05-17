@@ -5,4 +5,5 @@ class ShopItem (
     var itemDesc: String = "",
     var itemPrice: Int = 0,
     var itemId: String = "",
+    var reqLevel: Int = 0
 )

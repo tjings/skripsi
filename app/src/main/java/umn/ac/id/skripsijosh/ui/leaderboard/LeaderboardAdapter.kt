@@ -2,6 +2,7 @@ package umn.ac.id.skripsijosh.ui.leaderboard
 
 import android.content.Context
 import android.os.Build
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, p
         val tvLeaderboardName: TextView = itemView.findViewById(R.id.tvUserName)
         val tvLeaderboardRanking: TextView = itemView.findViewById(R.id.tvUserRanking)
         val tvHighestStreak: TextView = itemView.findViewById(R.id.tvHighestStreak)
+        val tvTotalWater: TextView = itemView.findViewById(R.id.tvTotalWater)
         val ivLeaderboard: ImageView = itemView.findViewById(R.id.ivLeaderboard)
     }
 
@@ -30,7 +32,6 @@ class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, p
         return ViewHolder(view)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O_MR1)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if(Util.isNotNull(leaderboardData[position].displayPic)) {
             Picasso.get()
@@ -40,9 +41,10 @@ class LeaderboardAdapter(private val leaderboardData: MutableList<UserStreak>, p
                 .into(holder.ivLeaderboard)
         }
         val ranking = position + 1
+        holder.tvTotalWater.text = String.format(context.getString(R.string.total_water_leaderboard), leaderboardData[position].totalWater)
         holder.tvLeaderboardName.text = leaderboardData[position].userName
         holder.tvHighestStreak.text = String.format(context.getString(R.string.highest_streak_leaderboard), leaderboardData[position].highestStreak)
-        holder.tvLeaderboardRanking.text = ranking.toString()
+        holder.tvLeaderboardRanking.text = TextUtils.concat("#", ranking.toString())
     }
 
     override fun getItemCount() = leaderboardData.size

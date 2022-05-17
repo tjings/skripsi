@@ -15,7 +15,6 @@ import umn.ac.id.skripsijosh.databinding.FragmentProfileBinding
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.Navigation
 import com.squareup.picasso.Picasso
 import org.greenrobot.eventbus.EventBus
 import umn.ac.id.skripsijosh.R
@@ -179,6 +178,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         else {
             val newUserData = UserData(
                 displayName = name,
+                level = mUserData.level,
                 gender = mUserData.gender,
                 bday = mUserData.bday,
                 height = height,
@@ -196,6 +196,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
 
         val editor = sharedPreferences.edit()
         editor.putString("display_name", userData.displayName)
+        editor.putInt("level", userData.level!!)
         editor.putString("gender", userData.gender)
         editor.putString("bday", userData.bday)
         editor.putString("weight", userData.weight)
@@ -211,7 +212,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
                 .into(binding.ivProfile)
         }
         binding.tvName.text = userData.displayName
-        binding.tvEmail.text = auth.currentUser?.email
+        binding.tvLevel.text = String.format(getString(R.string.level, userData.level))
         binding.etName.setText(userData.displayName)
         binding.etHeight.setText(userData.height)
         binding.etWeight.setText(userData.weight)

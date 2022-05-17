@@ -62,6 +62,20 @@
         app:layout_constraintTop_toTopOf="@+id/cvShop" />
 
     <TextView
+        android:id="@+id/tvInsufficientLv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/insuff_level"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_18sdp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/cvShop"
+        app:layout_constraintEnd_toEndOf="@+id/cvShop"
+        app:layout_constraintStart_toStartOf="@+id/cvShop"
+        app:layout_constraintTop_toTopOf="@+id/cvShop"
+        android:visibility="gone"/>
+
+    <TextView
         android:id="@+id/tvItemDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

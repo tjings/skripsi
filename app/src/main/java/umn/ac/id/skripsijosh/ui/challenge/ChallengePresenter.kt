@@ -40,12 +40,7 @@ class ChallengePresenter (view: ChallengeView) : BasePresenter <ChallengeView>()
             .addOnSuccessListener { streak ->
                 view?.stopLoading()
                 val mStreak = streak.toObject(UserStreak::class.java)
-                db.collection("userWater")
-                    .document(auth.uid!!)
-                    .get().addOnSuccessListener { water->
-                        val mWater = water.toObject(UserWater::class.java)
-                        view?.onGetUserMilestonesSuccess(mStreak!!, mWater!!)
-                    }
+                view?.onGetUserMilestonesSuccess(mStreak!!)
             }
     }
 

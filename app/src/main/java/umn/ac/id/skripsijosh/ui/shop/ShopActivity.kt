@@ -1,9 +1,8 @@
 package umn.ac.id.skripsijosh.ui.shop
 
-import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
@@ -19,6 +18,7 @@ import umn.ac.id.skripsijosh.utils.Util
 class ShopActivity : BaseActivity(), ShopView {
     private lateinit var binding: ActivityShopBinding
     private lateinit var presenter: ShopPresenter
+    private var userLevel = 0
     private var inventory: MutableList<String> = arrayListOf()
     private var itemList: MutableList<ShopItem> = arrayListOf()
     private var userBalance = 0
@@ -37,6 +37,7 @@ class ShopActivity : BaseActivity(), ShopView {
         binding.include2.toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
+        userLevel = sharedPreferences.getInt("level", 0)
         binding.include2.tvToolbarTitle.text = getString(R.string.navigation_shop)
     }
 
@@ -54,7 +55,6 @@ class ShopActivity : BaseActivity(), ShopView {
         initAdapter()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onGetBalanceSuccess(result: UserBalance) {
         userBalance = result.balance
         binding.tvBalance.text = String.format("$userBalance P")
@@ -80,7 +80,7 @@ class ShopActivity : BaseActivity(), ShopView {
     }
 
     override fun showSuccess() {
-        DialogUtil(this).showSuccess()
+        DialogUtil(this).showSuccess(getString(R.string.purchase_success))
     }
 
     override fun onGetInventorySuccess(result: UserInventory) {
@@ -92,7 +92,7 @@ class ShopActivity : BaseActivity(), ShopView {
     }
 
     private fun initAdapter() {
-        val adapter = ShopAdapter(itemList, inventory, this)
+        val adapter = ShopAdapter(itemList, inventory, userLevel, this)
         binding.rvShop.adapter = adapter
         binding.rvShop.layoutManager = GridLayoutManager(this, 2)
 
@@ -131,7 +131,12 @@ class ShopActivity : BaseActivity(), ShopView {
         dismissLoading()
     }
 
-    override fun showError(message: String) {}
+    override fun showError(message: String) {
+        if (checkIfActivityFinished()) {
+            return
+        }
+        Log.d("errorShop", message)
+    }
 
     override fun showEmpty() {}
 

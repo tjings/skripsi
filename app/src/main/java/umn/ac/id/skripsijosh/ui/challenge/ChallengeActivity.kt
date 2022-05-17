@@ -7,7 +7,6 @@ import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityChallengeBinding
 import umn.ac.id.skripsijosh.pojo.ChallengeDetails
 import umn.ac.id.skripsijosh.pojo.UserStreak
-import umn.ac.id.skripsijosh.pojo.UserWater
 
 class ChallengeActivity : BaseActivity(), ChallengeAdapter.ChallengeListener, ChallengeView {
     private lateinit var presenter: ChallengePresenter
@@ -44,9 +43,9 @@ class ChallengeActivity : BaseActivity(), ChallengeAdapter.ChallengeListener, Ch
         challengeList.addAll(result)
     }
 
-    override fun onGetUserMilestonesSuccess(mStreak: UserStreak, mWater: UserWater) {
+    override fun onGetUserMilestonesSuccess(mStreak: UserStreak) {
         userStreak = mStreak.highestStreak!!
-        userWater = mWater.progressTotal
+        userWater = mStreak.totalWater!!
         initAdapter()
     }
 

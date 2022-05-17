@@ -1,6 +1,7 @@
 package umn.ac.id.skripsijosh.ui.shop
 
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.Query
 import umn.ac.id.skripsijosh.base.BasePresenter
 import umn.ac.id.skripsijosh.pojo.ShopItem
 import umn.ac.id.skripsijosh.pojo.UserBalance
@@ -15,12 +16,17 @@ class ShopPresenter (view: ShopView) : BasePresenter <ShopView>() {
     fun getItemList() {
         view?.startLoading()
         db.collection("shopItem")
+            .orderBy("reqLevel")
+            .orderBy("itemPrice")
             .get()
             .addOnSuccessListener {
                 val result = it.toObjects(ShopItem::class.java)
                 view?.onGetItemSuccess(result)
             }
-            .addOnFailureListener { }
+            .addOnFailureListener {
+                view?.stopLoading()
+                view?.showError(it.message.toString())
+            }
     }
 
     fun getUserBalance() {

@@ -2,10 +2,17 @@ package umn.ac.id.skripsijosh.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.TextUtils
+import android.text.style.ClickableSpan
+import android.view.View
 import android.widget.Toast
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityLoginBinding
 import umn.ac.id.skripsijosh.ui.main.MainActivity
+import umn.ac.id.skripsijosh.ui.register.RegisterActivity
 import umn.ac.id.skripsijosh.utils.Util
 
 class LoginActivity : BaseActivity(), LoginView {
@@ -21,6 +28,7 @@ class LoginActivity : BaseActivity(), LoginView {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter = LoginPresenter(this)
+        registerText()
 
         binding.btnLogin.setOnClickListener {
             onLoginClicked()
@@ -72,5 +80,30 @@ class LoginActivity : BaseActivity(), LoginView {
         } else {
             Toast.makeText(this, "Ada yang salah", Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun registerText() {
+        val noAcc = "Haven't an account yet?\n"
+        val regist = "Register"
+        val here = "here"
+
+        val spanNoAcc = SpannableString(noAcc)
+        val spanReg = SpannableString(regist)
+        val spanHere = SpannableString(here)
+
+        val clickHere = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                startActivity(Intent (this@LoginActivity, RegisterActivity::class.java))
+            }
+        }
+
+        spanHere.setSpan(clickHere,
+            0,
+            here.length,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        val completeText = TextUtils.concat(spanNoAcc, spanReg, " ", spanHere)
+        binding.tvRegister.text = completeText
     }
 }

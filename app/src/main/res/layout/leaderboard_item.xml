@@ -17,9 +17,9 @@
         app:cardElevation="0dp"
         app:cardMaxElevation="0dp"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/tvTotalWater"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/tvUserName">
 
         <ImageView
             android:id="@+id/ivLeaderboard"
@@ -36,25 +36,27 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cvLeaderboard"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
-        tools:text="1" />
+        android:layout_marginEnd="@dimen/_10sdp"
+        tools:text="#1" />
 
     <TextView
         android:id="@+id/tvUserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/black"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cvLeaderboard"
-        app:layout_constraintTop_toTopOf="@id/cvLeaderboard"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Medal ABCDDCAd" />
 
     <TextView
@@ -63,11 +65,25 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/_12sdp"
         android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvUserName"
         android:text="@string/highest_streak_leaderboard"
         app:layout_constraintStart_toStartOf="@+id/tvUserName"/>
+
+    <TextView
+        android:id="@+id/tvTotalWater"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHighestStreak"
+        android:text="@string/highest_streak_leaderboard"
+        app:layout_constraintStart_toStartOf="@+id/tvHighestStreak"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout

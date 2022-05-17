@@ -8,6 +8,7 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="navigation_shop">Shop</string>
     <string name="navigation_profile">Profile</string>
+    <string name="level">Level %x</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="create_an_account">Create an account</string>
     <string name="havent_acc">Haven\'t an account? Register here!</string>
@@ -38,6 +39,7 @@
     <string name="are_you_sure">You sure you want to buy %s?</string>
     <string name="purchase_failed">Failed to purchase, insufficient points.</string>
     <string name="purchase_success">Purchase success.</string>
+    <string name="level_up">You Leveled Up!</string>
     <string name="drank_water">Hi %s, You drank %s mL today</string>
     <string name="add_your_progress">Add your progress</string>
     <string name="title_activity_leaderboard">LeaderboardActivity</string>
@@ -47,6 +49,7 @@
     <string name="challenge">Challenge</string>
     <string name="progress">%s\%%</string>
     <string name="highest_streak_leaderboard">Highest Streak : %s</string>
+    <string name="total_water_leaderboard">Total Water : %s</string>
     <string name="challenge_progress">%s/%s</string>
     <string name="gender">Gender</string>
     <string name="edit_your_profile">Edit Your Profile</string>
@@ -79,11 +82,12 @@
     <string name="choose_image">Choose image</string>
     <string name="upload_image">Upload image</string>
     <string name="tooltip_home">Indonesian Ministry of Health stated that we need at least 2L of water daily</string>
-    <string name="tooltip_shop">You can gain points by completting challenges!</string>
+    <string name="tooltip_shop">You can gain points by checking in and completing challenges!</string>
     <string name="notif_sum">Enable to remind you to drink.</string>
     <string name="completed">COMPLETED</string>
     <string name="select_your_progress_bar_theme">Select Your Progress Bar Theme</string>
     <string name="apply">Apply</string>
     <string name="owned">Owned</string>
+    <string name="insuff_level">Insufficient Level, req level : %s</string>
 
 </resources>

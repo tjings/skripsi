@@ -1,12 +1,12 @@
 package umn.ac.id.skripsijosh.ui.home
 
-import android.content.ContentValues.TAG
-import android.util.Log
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.ktx.getField
+import com.google.firebase.firestore.ktx.toObject
 import umn.ac.id.skripsijosh.base.BasePresenter
 import umn.ac.id.skripsijosh.pojo.UserDailyWater
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.pojo.UserStreak
-import umn.ac.id.skripsijosh.pojo.UserWater
 
 
 class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
@@ -30,6 +30,23 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
             }
     }
 
+    fun checkExp(level: Int): Int {
+        var result = 0
+        db.collection("experienceNeeded")
+            .document(level.toString())
+            .get()
+            .addOnSuccessListener {
+                result = it.getField<Int>("exp")!!
+            }
+        return result
+    }
+
+    fun levelUp() {
+        db.collection("userData")
+            .document(auth.uid!!)
+            .update("level", FieldValue.increment(1))
+    }
+
     fun getWaterData(today: String) {
         view?.startLoading()
         db.collection("userDailyWater")
@@ -46,7 +63,6 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
                     .document(auth.uid!!)
                     .get()
                     .addOnSuccessListener {
-                        view?.stopLoading()
                         val streak = it.toObject(UserStreak::class.java)
                         view?.onLoadDataSuccess(results, streak!!)
                     }
@@ -66,21 +82,11 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
             dailyWater = waterAmt,
             date = today
         )
-        db.collection("userWater")
+        db.collection("userStreak")
             .document(auth.uid!!)
-            .get()
+            .update("totalWater", FieldValue.increment(waterAmt.toLong()))
             .addOnSuccessListener {
-                val result = it.toObject(UserWater::class.java)
-                val progressTotal = UserWater(result!!.progressTotal + waterAmt)
-                db.collection("userWater")
-                    .document(auth.uid!!)
-                    .set(progressTotal)
-                    .addOnSuccessListener {
                         view?.onAddWaterSuccess()
-                    }
-                    .addOnFailureListener {
-                        view?.showError(it.message.toString())
-                    }
             }
         db.collection("userDailyWater")
             .document(today)
@@ -98,5 +104,11 @@ class HomePresenter (view: HomeView) : BasePresenter <HomeView>() {
             .addOnFailureListener {
                 view?.showError(it.message.toString())
             }
+    }
+
+    fun addPoints(pointGot: Int) {
+        db.collection("userBalance")
+            .document(auth.uid!!)
+            .update("balance", FieldValue.increment(pointGot.toLong()))
     }
 }

@@ -49,6 +49,7 @@ class UploadImagePresenter (view: UploadImageView) : BasePresenter<UploadImageVi
                 val downloadUri = task.result
                 val newUserData = UserData(
                     displayName = userData.displayName,
+                    level = userData.level,
                     gender = userData.gender,
                     bday = userData.bday,
                     height = userData.height,

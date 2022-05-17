@@ -144,6 +144,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     override fun onGetDataUserSucces(userData: UserData) {
         val editor = sharedPreferences.edit()
         editor.putString("display_name", userData.displayName)
+        editor.putInt("level", userData.level!!)
         editor.putString("gender", userData.gender)
         editor.putString("bday", userData.bday)
         editor.putString("weight", userData.weight)

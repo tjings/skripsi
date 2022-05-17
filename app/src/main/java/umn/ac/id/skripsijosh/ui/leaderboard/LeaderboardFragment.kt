@@ -1,6 +1,7 @@
 package umn.ac.id.skripsijosh.ui.leaderboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,7 +44,10 @@ class ShopFragment : BaseFragment(), LeaderboardView {
         if (checkIfFragmentNotAttachToActivity()) return
         dismissLoadingProgress()}
 
-    override fun showError(message: String) {}
+    override fun showError(message: String) {
+        if (checkIfFragmentNotAttachToActivity()) return
+        Log.d("error", message)
+    }
 
     override fun showEmpty() {}
 

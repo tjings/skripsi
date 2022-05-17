@@ -32,6 +32,7 @@ class UploadImageActivity : BaseActivity(), UploadImageView {
                     filePath!!,
                     userData = UserData(
                         displayName = sharedPreferences.getString("display_name", ""),
+                        level = sharedPreferences.getInt("level", 0),
                         gender = sharedPreferences.getString("gender", ""),
                         bday = sharedPreferences.getString("bday", ""),
                         height = sharedPreferences.getString("height", ""),

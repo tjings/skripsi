@@ -16,6 +16,7 @@ import umn.ac.id.skripsijosh.pojo.UserInventory
 
 class ShopAdapter (private val dataSet:  MutableList<ShopItem>,
                    private val inventory: MutableList<String>,
+                   private val userLevel: Int,
                    private val activity: Activity): RecyclerView.Adapter<ShopAdapter.ViewHolder>() {
 
     var onItemClick: ((ShopItem) -> Unit)? = null
@@ -25,6 +26,7 @@ class ShopAdapter (private val dataSet:  MutableList<ShopItem>,
         val tvItemName: TextView = itemView.findViewById(R.id.tvItemName)
         val tvItemDesc: TextView = itemView.findViewById(R.id.tvItemDesc)
         val tvEarned: TextView = itemView.findViewById(R.id.tvEarned)
+        val tvInsufficientLv: TextView = itemView.findViewById(R.id.tvInsufficientLv)
         val ivItemPic: ImageView = itemView.findViewById(R.id.ivItemPic)
         val tvItemPrice: TextView = itemView.findViewById(R.id.tvItemPrice)
 
@@ -48,6 +50,12 @@ class ShopAdapter (private val dataSet:  MutableList<ShopItem>,
                 holder.itemView.isEnabled = false
                 holder.clShopItem.visibility = View.VISIBLE
             }
+        }
+        if (userLevel < dataSet[position].reqLevel) {
+            holder.tvInsufficientLv.text = String.format(activity.getString(R.string.insuff_level), dataSet[position].reqLevel)
+            holder.tvInsufficientLv.visibility = View.VISIBLE
+            holder.itemView.isEnabled = false
+            holder.clShopItem.visibility = View.VISIBLE
         }
         val img: Int = activity.resources.getIdentifier(dataSet[position].itemId, "drawable", activity.packageName)
         holder.ivItemPic.setImageResource(img)
