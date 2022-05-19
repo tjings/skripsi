@@ -60,7 +60,7 @@ class WelcomeActivity : BaseActivity(), WelcomeView {
 
     override fun showEmpty() {}
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: RegistDone) {
         finish()
     }

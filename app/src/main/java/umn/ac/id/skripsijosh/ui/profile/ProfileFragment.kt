@@ -13,16 +13,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import umn.ac.id.skripsijosh.base.BaseFragment
 import umn.ac.id.skripsijosh.databinding.FragmentProfileBinding
 import umn.ac.id.skripsijosh.pojo.UserData
-import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import androidx.fragment.app.FragmentTransaction
 import com.squareup.picasso.Picasso
 import org.greenrobot.eventbus.EventBus
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.pojo.CheckNotification
 import umn.ac.id.skripsijosh.pojo.Logout
-import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.profile.uploadimage.UploadImageActivity
-import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
 import umn.ac.id.skripsijosh.ui.settings.SettingsActivity
 import umn.ac.id.skripsijosh.utils.Util
 
@@ -151,7 +148,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         })
 
         binding.logoutFab.setOnClickListener {
-            EventBus.getDefault().postSticky(Logout())
+            EventBus.getDefault().post(Logout())
         }
 
         binding.btnSave.setOnClickListener {

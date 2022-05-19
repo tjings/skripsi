@@ -18,11 +18,9 @@ import org.greenrobot.eventbus.ThreadMode
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityLoginBinding
-import umn.ac.id.skripsijosh.pojo.Logout
 import umn.ac.id.skripsijosh.pojo.RegistDone
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.register.RegisterActivity
-import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import umn.ac.id.skripsijosh.utils.Util
 
 class LoginActivity : BaseActivity(), LoginView {
@@ -62,6 +60,7 @@ class LoginActivity : BaseActivity(), LoginView {
     }
 
     override fun onLoginSuccesful() {
+        EventBus.getDefault().post(RegistDone())
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
@@ -137,7 +136,7 @@ class LoginActivity : BaseActivity(), LoginView {
         binding.tvRegister.highlightColor = Color.TRANSPARENT
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: RegistDone) {
         finish()
     }

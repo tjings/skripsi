@@ -352,7 +352,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         checkNotif()
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe( threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: Logout) {
         auth.signOut()
         sharedPreferences.edit().clear().apply()
