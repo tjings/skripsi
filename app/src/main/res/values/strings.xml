@@ -11,6 +11,7 @@
     <string name="level">Level %x</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="create_an_account">Create an account</string>
+    <string name="comlete_biodata">Complete Biodata</string>
     <string name="havent_acc">Haven\'t an account? Register here!</string>
     <string name="name">Name</string>
     <string name="enter_name">Enter your name here</string>

@@ -181,9 +181,6 @@ class BiodataActivity : BaseActivity(), BiodataView, AdapterView.OnItemSelectedL
         if(!Util.isNotNull(bday)) {
             binding.tvErrorBday.visibility = View.VISIBLE
         }
-        if(!Util.isNotNull(gender)) {
-            binding.tvErrorGender.visibility = View.VISIBLE
-        }
         else {
             presenter.addUserData(
                 displayName = displayName!!,
