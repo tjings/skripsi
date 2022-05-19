@@ -1,18 +1,28 @@
 package umn.ac.id.skripsijosh.ui.login
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.TextUtils
+import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityLoginBinding
+import umn.ac.id.skripsijosh.pojo.Logout
+import umn.ac.id.skripsijosh.pojo.RegistDone
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.register.RegisterActivity
+import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import umn.ac.id.skripsijosh.utils.Util
 
 class LoginActivity : BaseActivity(), LoginView {
@@ -37,6 +47,18 @@ class LoginActivity : BaseActivity(), LoginView {
         if(currentUser != null) {
             onLoginSuccesful()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onLoginSuccesful() {
@@ -83,7 +105,7 @@ class LoginActivity : BaseActivity(), LoginView {
     }
 
     fun registerText() {
-        val noAcc = "Haven't an account yet?\n"
+        val noAcc = "Haven't an account yet? "
         val regist = "Register"
         val here = "here"
 
@@ -91,9 +113,15 @@ class LoginActivity : BaseActivity(), LoginView {
         val spanReg = SpannableString(regist)
         val spanHere = SpannableString(here)
 
+        val black = ContextCompat.getColor(this, R.color.black)
+
         val clickHere = object : ClickableSpan() {
             override fun onClick(widget: View) {
                 startActivity(Intent (this@LoginActivity, RegisterActivity::class.java))
+            }
+            override fun updateDrawState(ds: TextPaint) {
+                ds.color = black
+                ds.isUnderlineText = false
             }
         }
 
@@ -105,5 +133,12 @@ class LoginActivity : BaseActivity(), LoginView {
 
         val completeText = TextUtils.concat(spanNoAcc, spanReg, " ", spanHere)
         binding.tvRegister.text = completeText
+        binding.tvRegister.movementMethod = LinkMovementMethod.getInstance()
+        binding.tvRegister.highlightColor = Color.TRANSPARENT
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: RegistDone) {
+        finish()
     }
 }

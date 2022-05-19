@@ -11,9 +11,12 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
+import org.greenrobot.eventbus.EventBus
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityBiodataBinding
+import umn.ac.id.skripsijosh.pojo.Logout
+import umn.ac.id.skripsijosh.pojo.RegistDone
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.utils.Util
 import java.text.ParseException
@@ -123,6 +126,7 @@ class BiodataActivity : BaseActivity(), BiodataView, AdapterView.OnItemSelectedL
 
     override fun onSaveBiodataSucces() {
         startActivity(Intent(this, MainActivity::class.java))
+        EventBus.getDefault().postSticky(RegistDone())
         finish()
     }
 

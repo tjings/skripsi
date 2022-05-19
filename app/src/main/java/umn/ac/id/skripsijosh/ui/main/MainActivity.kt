@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.greenrobot.eventbus.EventBus
@@ -17,13 +18,16 @@ import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.base.BaseActivity
 import umn.ac.id.skripsijosh.databinding.ActivityMainBinding
 import umn.ac.id.skripsijosh.pojo.CheckNotification
+import umn.ac.id.skripsijosh.pojo.Logout
 import umn.ac.id.skripsijosh.pojo.UserData
 import umn.ac.id.skripsijosh.ui.notification.*
 import umn.ac.id.skripsijosh.ui.notification.Notification
 import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
+import umn.ac.id.skripsijosh.ui.welcome.WelcomeActivity
 import umn.ac.id.skripsijosh.utils.Util
 import java.time.LocalDateTime
 import java.util.*
+
 
 class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigationItemSelectedListener {
     private val startDestinations = mapOf(
@@ -45,6 +49,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     private var minutes: Int = 0
     private var timer: Timer? = null
     private var alarmsCreated = false
+    private var backButtonCount = 0
 
     private val task: TimerTask = object : TimerTask() {
         override fun run() {
@@ -174,6 +179,22 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     override fun showError(message: String) {}
 
     override fun showEmpty() {}
+
+    override fun onBackPressed() {
+        if (backButtonCount >= 1) {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        } else {
+            backButtonCount++
+            Toast.makeText(
+                this,
+                "Press the back button once again to close the application.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
 
     private fun init() {
         homeTabContainer = binding.homeTab
@@ -312,7 +333,7 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
         return calendar.timeInMillis
     }
 
-    private fun checkNotif(fromTimer: Boolean = false) {
+    private fun checkNotif() {
         if(sharedPreferences.getBoolean("enable_notif", true)) {
             createNotificationChannel()
             setAlarms()
@@ -329,5 +350,18 @@ class MainActivity : BaseActivity(), MainView, BottomNavigationView.OnNavigation
     fun onMessageEvent(event: CheckNotification) {
         Log.d("notif", sharedPreferences.getBoolean("enable_notif", true).toString())
         checkNotif()
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: Logout) {
+        auth.signOut()
+        sharedPreferences.edit().clear().apply()
+        if(notificationManager != null) {
+            notificationManager!!.cancelAll()
+            timer?.cancel()
+            alarmsCreated = false
+        }
+        finish()
+        startActivity(Intent(this, WelcomeActivity::class.java))
     }
 }

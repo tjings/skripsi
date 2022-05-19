@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso
 import org.greenrobot.eventbus.EventBus
 import umn.ac.id.skripsijosh.R
 import umn.ac.id.skripsijosh.pojo.CheckNotification
+import umn.ac.id.skripsijosh.pojo.Logout
 import umn.ac.id.skripsijosh.ui.main.MainActivity
 import umn.ac.id.skripsijosh.ui.profile.uploadimage.UploadImageActivity
 import umn.ac.id.skripsijosh.ui.register.biodata.BiodataActivity
@@ -150,10 +151,7 @@ class ProfileFragment : BaseFragment(), ProfileView {
         })
 
         binding.logoutFab.setOnClickListener {
-            auth.signOut()
-            sharedPreferences.edit().clear().apply()
-            requireActivity().finish()
-            startActivity(Intent(context, WelcomeActivity::class.java))
+            EventBus.getDefault().postSticky(Logout())
         }
 
         binding.btnSave.setOnClickListener {

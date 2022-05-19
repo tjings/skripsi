@@ -1,14 +1,13 @@
 package umn.ac.id.skripsijosh.ui.home
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import com.skydoves.balloon.*
 import com.skydoves.balloon.overlay.BalloonOverlayRect
